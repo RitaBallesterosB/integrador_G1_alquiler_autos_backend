@@ -8,6 +8,10 @@ import java.util.Set;
         @UniqueConstraint(columnNames = {"nombre"})
 })
 public class Vehiculo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name="id_vehiculo")
     private Long id;
 
