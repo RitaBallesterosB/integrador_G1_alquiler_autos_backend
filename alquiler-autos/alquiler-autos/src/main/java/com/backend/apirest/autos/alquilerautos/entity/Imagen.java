@@ -8,7 +8,7 @@ public class Imagen {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_imagen")
+    @Column(name="id_imagenes")
     private Long id;
 
     private String nombre;

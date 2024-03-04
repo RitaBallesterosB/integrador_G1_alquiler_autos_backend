@@ -1,7 +1,7 @@
 package com.backend.apirest.autos.alquilerautos.entity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "VEHICULOS", uniqueConstraints = {
@@ -11,30 +11,26 @@ public class Vehiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name="id_vehiculo")
     private Long id;
 
     private String nombre;
 
-
     private String descripcion;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_imagen")
-    private Imagen imagen;
+    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Imagen> imagenes;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "VEHICULOS_has_CARACTERISTICAS",
+    @JoinTable(name = "VEHICULOS_has_CARACTERISTICAS",
             joinColumns = @JoinColumn(name = "VEHICULO_id_vehiculo"),
             inverseJoinColumns = @JoinColumn(name = "CARACTERISTICAS_id_caracteristicas")
     )
-    private Set<Caracteristica> caracteristicas;
+    private List<Caracteristica> caracteristicas;
 
     @OneToOne(mappedBy = "vehiculo")
     private Reserva reserva;
@@ -42,11 +38,11 @@ public class Vehiculo {
     public Vehiculo() {
     }
 
-    public Vehiculo(Long id, String nombre, String descripcion, Imagen imagen, Categoria categoria, Set<Caracteristica> caracteristicas, Reserva reserva) {
+    public Vehiculo(Long id, String nombre, String descripcion, List<Imagen> imagenes, Categoria categoria, List<Caracteristica> caracteristicas, Reserva reserva) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.imagen = imagen;
+        this.imagenes = imagenes;
         this.categoria = categoria;
         this.caracteristicas = caracteristicas;
         this.reserva = reserva;
@@ -76,12 +72,12 @@ public class Vehiculo {
         this.descripcion = descripcion;
     }
 
-    public Imagen getImagen() {
-        return imagen;
+    public List<Imagen> getImagenes() {
+        return imagenes;
     }
 
-    public void setImagen(Imagen imagen) {
-        this.imagen = imagen;
+    public void setImagenes(List<Imagen> imagenes) {
+        this.imagenes = imagenes;
     }
 
     public Categoria getCategoria() {
@@ -92,11 +88,11 @@ public class Vehiculo {
         this.categoria = categoria;
     }
 
-    public Set<Caracteristica> getCaracteristicas() {
+    public List<Caracteristica> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(Set<Caracteristica> caracteristicas) {
+    public void setCaracteristicas(List<Caracteristica> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 
@@ -108,3 +104,4 @@ public class Vehiculo {
         this.reserva = reserva;
     }
 }
+
