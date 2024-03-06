@@ -3,7 +3,7 @@ package com.backend.apirest.autos.alquilerautos.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "IMAGENES")
+@Table(name = "imagenes")
 public class Imagen {
 
     @Id
@@ -15,7 +15,7 @@ public class Imagen {
     private String url;
 
     @ManyToOne
-    @JoinColumn(name= "id_vehiculo")
+    @JoinColumn(name= "VEHICULOS_id_vehiculos")
     private Vehiculo vehiculo;
 
     public Imagen() {

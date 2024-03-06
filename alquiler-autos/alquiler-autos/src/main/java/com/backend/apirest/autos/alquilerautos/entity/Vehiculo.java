@@ -4,14 +4,14 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "VEHICULOS", uniqueConstraints = {
+@Table(name = "vehiculos", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"nombre"})
 })
 public class Vehiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_vehiculo")
+    @Column(name="id_vehiculos")
     private Long id;
 
     private String nombre;
@@ -22,7 +22,7 @@ public class Vehiculo {
     private List<Imagen> imagenes;
 
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
+    @JoinColumn(name = "CATEGORIAS_id_categorias")
     private Categoria categoria;
 
     @ManyToMany(cascade = CascadeType.ALL)

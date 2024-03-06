@@ -4,19 +4,20 @@ import javax.persistence.*;
 
 
     @Entity
-    @Table(name = "VEHICULOS_HAS_CARACTERISTICAS")
+    @Table(name = "vehiculos_has_caracteristicas")
     public class VehiculoCaracteristica {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name="id_vehiculos_has_caracteristicas")
         private Long id;
 
         @ManyToOne
-        @JoinColumn(name = "VEHICULO_ID")
+        @JoinColumn(name = "VEHICULOS_id_vehiculos")
         private Vehiculo vehiculo;
 
         @ManyToOne
-        @JoinColumn(name = "CARACTERISTICA_ID")
+        @JoinColumn(name = "CARACTERISTICAS_id_caracteristicas")
         private Caracteristica caracteristica;
 
         public VehiculoCaracteristica() {

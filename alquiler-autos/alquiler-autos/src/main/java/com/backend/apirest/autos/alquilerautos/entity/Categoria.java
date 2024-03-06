@@ -9,10 +9,12 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_categorias")
     private Long id;
 
     private String titulo;
     private String descripcion;
+    @Column(name = "url_image")
     private String urlImage;
 
     @OneToMany(mappedBy = "categoria")

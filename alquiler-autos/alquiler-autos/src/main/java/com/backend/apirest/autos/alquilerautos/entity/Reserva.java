@@ -3,7 +3,7 @@ package com.backend.apirest.autos.alquilerautos.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "RESERVAS")
+@Table(name = "reservas")
 public class Reserva {
 
     @Id
