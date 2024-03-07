@@ -27,7 +27,7 @@ public class Vehiculo {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "VEHICULOS_has_CARACTERISTICAS",
-            joinColumns = @JoinColumn(name = "VEHICULO_id_vehiculo"),
+            joinColumns = @JoinColumn(name = "VEHICULOS_id_vehiculos"),
             inverseJoinColumns = @JoinColumn(name = "CARACTERISTICAS_id_caracteristicas")
     )
     private List<Caracteristica> caracteristicas;

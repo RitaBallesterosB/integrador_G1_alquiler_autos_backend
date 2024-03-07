@@ -51,6 +51,6 @@ public class VehiculoSalidaDto {
         this.imagenes = imagenes;
     }
     @Override
-    public String toString() { return "id:" + id + ", Nombre: " + nombre + '\'' + ", Descripcion: " + descripcion + '\'' + ", Imagenes=" + imagenes; }
+    public String toString() { return "id:" + id + ", Nombre: " + nombre + '\'' + ", Descripcionn: " + descripcion + '\'' + ", Imagenes=" + imagenes; }
 }
 

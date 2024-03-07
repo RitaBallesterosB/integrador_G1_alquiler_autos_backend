@@ -1,5 +1,7 @@
 package com.backend.apirest.autos.alquilerautos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,11 +14,12 @@ public class Reserva {
     private Long idReserva;
 
     @OneToOne
-    @JoinColumn(name = "VEHICULOS_id_vehiculo")
+    @JoinColumn(name = "VEHICULOS_id_vehiculos")
+    @JsonIgnore
     private Vehiculo vehiculo;
 
     @OneToOne // ya que definimos en la BD que un vehiculo solo tiene una reserva
-    @JoinColumn(name = "USUARIOS_id_usuario")
+    @JoinColumn(name = "USUARIOS_id_usuarios")
     private Usuario usuario;
 
     // Constructor, getters y setters

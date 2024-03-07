@@ -11,16 +11,16 @@ public class CategoriaSalidaDto {
     private String descripcion;
 
 
-    private String urlImage;
+    private String urlImagen;
 
     public CategoriaSalidaDto() {
     }
 
-    public CategoriaSalidaDto(Long id, String titulo, String descripcion, String urlImage) {
+    public CategoriaSalidaDto(Long id, String titulo, String descripcion, String urlImagen) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.urlImage = urlImage;
+        this.urlImagen = urlImagen;
     }
 
     public Long getId() {
@@ -47,16 +47,16 @@ public class CategoriaSalidaDto {
         this.descripcion = descripcion;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setUrlImagen(String urlImage) {
+        this.urlImagen = urlImage;
     }
 
     @Override
     public String toString() {
-        return "id:" + id +  ", titulo:'" + titulo + '\'' + ", descripcion:'" + descripcion + '\'' + ", urlImage:'" + urlImage + '\'' + '}';
+        return "id:" + id +  ", titulo:'" + titulo + '\'' + ", descripcion:'" + descripcion + '\'' + ", urlImagen:'" + urlImagen + '\'' + '}';
     }
 }

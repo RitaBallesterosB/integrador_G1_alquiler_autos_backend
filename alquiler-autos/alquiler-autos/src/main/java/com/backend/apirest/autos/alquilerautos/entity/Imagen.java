@@ -1,5 +1,7 @@
 package com.backend.apirest.autos.alquilerautos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Imagen {
 
     @ManyToOne
     @JoinColumn(name= "VEHICULOS_id_vehiculos")
+    @JsonIgnore
     private Vehiculo vehiculo;
 
     public Imagen() {

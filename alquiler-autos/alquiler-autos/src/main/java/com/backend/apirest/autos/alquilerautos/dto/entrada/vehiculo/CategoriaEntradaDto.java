@@ -17,15 +17,15 @@ public class CategoriaEntradaDto {
     @Size(min = 2, max = 2000, message = "La url  debe tener hasta 2000 caracteres")
 
     @NotNull(message ="La url no debe estar nula")
-        private String urlImage;
+        private String urlImagen;
 
     public CategoriaEntradaDto() {
     }
 
-    public CategoriaEntradaDto(String titulo, String descripcion, String urlImage) {
+    public CategoriaEntradaDto(String titulo, String descripcion, String urlImagen) {
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.urlImage = urlImage;
+        this.urlImagen = urlImagen;
     }
 
     public String getTitulo() {
@@ -44,12 +44,12 @@ public class CategoriaEntradaDto {
         this.descripcion = descripcion;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setUrlImagen(String urlImage) {
+        this.urlImagen = urlImagen;
     }
 }
 

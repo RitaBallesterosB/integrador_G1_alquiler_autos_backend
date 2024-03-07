@@ -14,8 +14,8 @@ public class Categoria {
 
     private String titulo;
     private String descripcion;
-    @Column(name = "url_image")
-    private String urlImage;
+    @Column(name = "url_imagen")
+    private String urlImagen;
 
     @OneToMany(mappedBy = "categoria")
     private Set<Vehiculo> vehiculos;
@@ -27,7 +27,7 @@ public class Categoria {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.urlImage = urlImage;
+        this.urlImagen = urlImagen;
         this.vehiculos = vehiculos;
     }
 
@@ -55,12 +55,12 @@ public class Categoria {
         this.descripcion = descripcion;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 
     public Set<Vehiculo> getVehiculos() {

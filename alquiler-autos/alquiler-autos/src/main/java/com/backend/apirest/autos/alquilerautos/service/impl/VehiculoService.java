@@ -5,6 +5,7 @@ import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntr
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.entity.Imagen;
+import com.backend.apirest.autos.alquilerautos.repository.ImagenRepository;
 import com.backend.apirest.autos.alquilerautos.repository.VehiculoRepository;
 import com.backend.apirest.autos.alquilerautos.service.IVehiculoService;
 import org.modelmapper.ModelMapper;
@@ -21,11 +22,14 @@ public class VehiculoService implements IVehiculoService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(VehiculoService.class);
     private final VehiculoRepository vehiculoRepository;
+
+    private final ImagenRepository imagenRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public VehiculoService(VehiculoRepository vehiculoRepository, ModelMapper modelMapper) {
+    public VehiculoService(VehiculoRepository vehiculoRepository,ImagenRepository imagenRepository, ModelMapper modelMapper) {
         this.vehiculoRepository = vehiculoRepository;
+        this.imagenRepository = imagenRepository;
         this.modelMapper = modelMapper;
         configureMapping();
     }
@@ -83,7 +87,32 @@ public class VehiculoService implements IVehiculoService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<VehiculoSalidaDto> listarVehiculos() {
+        List<Vehiculo> vehiculos = vehiculoRepository.findAll();
+        return vehiculos.stream()
+                .map(this::entidadADtoSalida)
+                .collect(Collectors.toList());
+    }
 
+    @Override
+    public void eliminarVehiculo(Long id) {
+        // Verificar si el vehículo existe antes de intentar eliminarlo
+        Optional<Vehiculo> vehiculoOptional = vehiculoRepository.findById(id);
+        if (vehiculoOptional.isEmpty()) {
+            throw new NoSuchElementException("No se encontró un vehículo con el ID especificado");
+        }
+        Vehiculo vehiculo = vehiculoOptional.get();
+
+        // Obtener la lista de imágenes asociadas al vehículo
+        List<Imagen> imagenes = vehiculo.getImagenes();
+        System.out.println(imagenes);
+        // Eliminar cada imagen de la base de datos
+        for (Imagen imagen : imagenes) {
+            imagenRepository.delete(imagen);
+        }
+        vehiculoRepository.deleteById(id);
+    }
 
 
 
