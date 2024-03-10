@@ -17,7 +17,7 @@ public class Usuario {
     @Column(name = "correo_electronico")
     private String correoElectronico;
     private String contrasenia;
-    private boolean administrador;
+    private Integer administrador;
 
     @OneToOne(mappedBy = "usuario")
     private Reserva reserva;
@@ -25,7 +25,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nombre, String apellido, String correoElectronico, String contrasenia, boolean administrador, Reserva reserva) {
+    public Usuario(Long idUsuario, String nombre, String apellido, String correoElectronico, String contrasenia, Integer administrador, Reserva reserva) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -55,7 +55,7 @@ public class Usuario {
         return contrasenia;
     }
 
-    public boolean isAdministrador() {
+    public Integer isAdministrador() {
         return administrador;
     }
 
