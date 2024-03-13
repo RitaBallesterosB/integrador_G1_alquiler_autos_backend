@@ -24,8 +24,7 @@ public class Imagen {
     public Imagen() {
     }
 
-    public Imagen(Long id, String nombre, String url, Vehiculo vehiculo) {
-        this.id = id;
+    public Imagen(String nombre, String url, Vehiculo vehiculo) {
         this.nombre = nombre;
         this.url = url;
         this.vehiculo = vehiculo;

@@ -3,13 +3,13 @@ package com.backend.apirest.autos.alquilerautos.service;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.ImagenEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
-import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
+import com.backend.apirest.autos.alquilerautos.exceptions.BadRequestException;
 
 
 import java.util.List;
 
 public interface IVehiculoService {
-    VehiculoSalidaDto agregarVehiculo(VehiculoEntradaDto vehiculo);
+    VehiculoSalidaDto agregarVehiculo(VehiculoEntradaDto vehiculo) throws BadRequestException;
 
     //___________________________________________________________________________________________
 
@@ -18,8 +18,12 @@ public interface IVehiculoService {
     //___________________________________________________________________________________________
 
     List<VehiculoSalidaDto> obtenerVehiculosAleatorios();
+    //___________________________________________________________________________________________
+
 
     List<VehiculoSalidaDto> listarVehiculos();
+    //___________________________________________________________________________________________
+
     void eliminarVehiculo(Long id);
 }
 

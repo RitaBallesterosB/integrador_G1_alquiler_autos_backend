@@ -27,13 +27,27 @@ public class VehiculoController {
         this.vehiculoService = vehiculoService;
     }
 
-    // Método para agregar un vehículo
     //____________________________________________________________________________________
+    // Método para agregar un vehículo
     @PostMapping("/agregar")
-    public ResponseEntity<VehiculoSalidaDto> agregarVehiculo(@Valid @RequestBody VehiculoEntradaDto vehiculo)
-            throws BadRequestException {
-        return new ResponseEntity<>(vehiculoService.agregarVehiculo(vehiculo), HttpStatus.CREATED);
+    public ResponseEntity<?> agregarVehiculo(@Valid @RequestBody VehiculoEntradaDto vehiculo) {
+        try {
+            if (vehiculo == null || vehiculo.getNombre() == null || vehiculo.getNombre().isEmpty()) {
+                throw new BadRequestException("El campo nombre no puede estar vacío");
+            }
+            VehiculoSalidaDto vehiculoSalidaDto = vehiculoService.agregarVehiculo(vehiculo);
+            return ResponseEntity.ok(vehiculoSalidaDto);
+        } catch (BadRequestException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
+
+
+
+
+
+    //____________________________________________________________________________________
+    // Método para agregar imágenes
     @PostMapping("/{id}/agregar-imagenes")
     public ResponseEntity<?> agregarImagenesAVehiculo(
             @PathVariable Long id,
@@ -53,7 +67,7 @@ public class VehiculoController {
         List<VehiculoSalidaDto> vehiculosAleatorios = vehiculoService.obtenerVehiculosAleatorios();
         return ResponseEntity.ok(vehiculosAleatorios);
     }
-
+    //___________________________________________________________________________________
     @GetMapping("/listar")
     public ResponseEntity<?> listarVehiculos() {
         try{
@@ -65,7 +79,7 @@ public class VehiculoController {
             return new ResponseEntity<>("Error al obtener la lista de vehículos", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    //___________________________________________________________________________________
     // Método DELETE para eliminar un vehículo por su ID
     @DeleteMapping("eliminar/{id}")
     public ResponseEntity<?> eliminarVehiculo(@PathVariable Long id) {

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "CATEGORIAS")
+@Table(name = "categorias")
 public class Categoria {
 
     @Id
@@ -71,4 +71,3 @@ public class Categoria {
         this.vehiculos = vehiculos;
     }
 }
-

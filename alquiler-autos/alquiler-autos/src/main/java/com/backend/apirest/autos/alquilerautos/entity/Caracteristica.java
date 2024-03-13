@@ -22,8 +22,7 @@ public class Caracteristica {
     public Caracteristica() {
     }
 
-    public Caracteristica(Long id, String nombre, String urlIcono, Set<VehiculoCaracteristica> vehiculoCaracteristicas) {
-        this.id = id;
+    public Caracteristica(String nombre, String urlIcono, Set<VehiculoCaracteristica> vehiculoCaracteristicas) {
         this.nombre = nombre;
         this.urlIcono = urlIcono;
         this.vehiculoCaracteristicas = vehiculoCaracteristicas;

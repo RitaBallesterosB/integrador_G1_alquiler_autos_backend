@@ -1,5 +1,7 @@
 package com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo;
 
+
+
 import java.util.List;
 
 public class VehiculoSalidaDto {
@@ -7,16 +9,19 @@ public class VehiculoSalidaDto {
     private Long id;
     private String nombre;
     private String descripcion;
+
     private List<ImagenSalidaDto> imagenes;
+    private CategoriaSalidaDto categoria;
 
     public VehiculoSalidaDto() {
     }
 
-    public VehiculoSalidaDto(Long id, String nombre, String descripcion, List<ImagenSalidaDto> imagenes) {
+    public VehiculoSalidaDto(Long id, String nombre, String descripcion, List<ImagenSalidaDto> imagenes, CategoriaSalidaDto categoria) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagenes = imagenes;
+        this.categoria = categoria;
     }
 
     public Long getId() {
@@ -50,7 +55,20 @@ public class VehiculoSalidaDto {
     public void setImagenes(List<ImagenSalidaDto> imagenes) {
         this.imagenes = imagenes;
     }
+
+    public CategoriaSalidaDto getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaSalidaDto categoria) {
+        this.categoria = categoria;
+    }
+
     @Override
-    public String toString() { return "id:" + id + ", Nombre: " + nombre + '\'' + ", Descripcionn: " + descripcion + '\'' + ", Imagenes=" + imagenes; }
-}
+    public String toString() {
+        return "id=" + id + ", Nombre:'" + nombre + '\'' + ", Descripcion:'" + descripcion + '\'' +
+                ", Imagenes:" + imagenes + ", Categoria:" + categoria; }
+    }
+
+
 

@@ -1,19 +1,22 @@
 package com.backend.apirest.autos.alquilerautos.service.impl;
 
+import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.CategoriaEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.ImagenEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntradaDto;
+import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.CategoriaSalidaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
+import com.backend.apirest.autos.alquilerautos.entity.Categoria;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.entity.Imagen;
 import com.backend.apirest.autos.alquilerautos.repository.ImagenRepository;
 import com.backend.apirest.autos.alquilerautos.repository.VehiculoRepository;
+import com.backend.apirest.autos.alquilerautos.repository.CategoriaRepository;
 import com.backend.apirest.autos.alquilerautos.service.IVehiculoService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,68 +27,96 @@ public class VehiculoService implements IVehiculoService {
     private final VehiculoRepository vehiculoRepository;
 
     private final ImagenRepository imagenRepository;
+
+    private final CategoriaRepository categoriaRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public VehiculoService(VehiculoRepository vehiculoRepository,ImagenRepository imagenRepository, ModelMapper modelMapper) {
+    public VehiculoService(VehiculoRepository vehiculoRepository, ImagenRepository imagenRepository, CategoriaRepository categoriaRepository, ModelMapper modelMapper) {
         this.vehiculoRepository = vehiculoRepository;
         this.imagenRepository = imagenRepository;
+        this.categoriaRepository = categoriaRepository;
         this.modelMapper = modelMapper;
         configureMapping();
     }
 
+
+
+
     @Override
     public VehiculoSalidaDto agregarVehiculo(VehiculoEntradaDto vehiculoDto) {
-        Vehiculo vehiculo = dtoEntradaAEntidad(vehiculoDto);
-        Vehiculo vehiculoAgregado = vehiculoRepository.save(vehiculo);
-        VehiculoSalidaDto vehiculoSalidaDto = entidadADtoSalida(vehiculoAgregado);
-        LOGGER.info("Vehiculo agregado: {}", vehiculoSalidaDto);
-        return vehiculoSalidaDto;
+        try {
+            Vehiculo vehiculo = dtoEntradaAEntidad(vehiculoDto);
+
+            // Obtener la categoría existente de la base de datos por su ID
+            Long categoriaId = vehiculoDto.getCategoria().getId();
+            Categoria categoria = categoriaRepository.findById(categoriaId)
+                    .orElseThrow(() -> new NoSuchElementException("No se encontró una categoría con el ID especificado: " + categoriaId));
+
+            // Asignar la categoría al vehículo
+            vehiculo.setCategoria(categoria);
+
+            // Guardar el vehículo en la base de datos
+            Vehiculo vehiculoGuardado = vehiculoRepository.save(vehiculo);
+
+            // Mapear el vehículo guardado a un DTO de salida y devolverlo
+            VehiculoSalidaDto vehiculoSalidaDto = entidadADtoSalida(vehiculoGuardado);
+            LOGGER.info("Vehiculo agregado exitosamente: {}", vehiculoSalidaDto);
+            return vehiculoSalidaDto;
+        } catch (Exception e) {
+            LOGGER.error("Se produjo un error al agregar el vehículo: {}", e.getMessage());
+            throw new RuntimeException("Error al agregar el vehículo", e);
+        }
     }
+
 
     //___________________________________________________________________________
     @Override
     public VehiculoSalidaDto agregarImagenesAVehiculo(Long idVehiculo, List<ImagenEntradaDto> nuevasImagenes) {
-        Vehiculo vehiculo = vehiculoRepository.findById(idVehiculo).orElse(null);
-
-        if (vehiculo == null) {
+        // Buscar el vehículo en la base de datos por su ID
+        Optional<Vehiculo> vehiculoOptional = vehiculoRepository.findById(idVehiculo);
+        if (vehiculoOptional.isEmpty()) {
             LOGGER.error("Error: Vehiculo no encontrado");
-            return null;
+            throw new NoSuchElementException("No se encontró un vehículo con el ID especificado: " + idVehiculo);
         }
+        Vehiculo vehiculo = vehiculoOptional.get();
 
+        // Mapear las nuevas imágenes a entidades Imagen y establecer la relación con el vehículo
         List<Imagen> imagenes = nuevasImagenes.stream()
-                .map(imagenDto -> modelMapper.map(imagenDto, Imagen.class))
+                .map(imagenDto -> {
+                    Imagen imagen = modelMapper.map(imagenDto, Imagen.class);
+                    imagen.setVehiculo(vehiculo); // Establecer la relación con el vehículo
+                    return imagen;
+                })
                 .collect(Collectors.toList());
 
+        // Agregar las nuevas imágenes a la lista de imágenes del vehículo
         vehiculo.getImagenes().addAll(imagenes);
+
+        // Guardar el vehículo actualizado en la base de datos
         vehiculoRepository.save(vehiculo);
 
+        // Mapear el vehículo actualizado a un DTO de salida y devolverlo
         return modelMapper.map(vehiculo, VehiculoSalidaDto.class);
     }
+
+
 
 
     //___________________________________________________________________________
     @Override
     public List<VehiculoSalidaDto> obtenerVehiculosAleatorios() {
         List<Vehiculo> vehiculos = vehiculoRepository.findAll();
-        List<Vehiculo> vehiculosAleatorios = new ArrayList<>();
-        Random random = new Random();
-
-        // Obtener índices aleatorios sin duplicados
-        Set<Integer> indicesAleatorios = new HashSet<>();
-        while (indicesAleatorios.size() < Math.min(4, vehiculos.size())) {
-            indicesAleatorios.add(random.nextInt(vehiculos.size()));
-        }
-
-        // Obtener vehículos correspondientes a los índices aleatorios
-        for (Integer indice : indicesAleatorios) {
-            vehiculosAleatorios.add(vehiculos.get(indice));
-        }
+        Collections.shuffle(vehiculos); // Mezcla aleatoriamente la lista de vehículos
+        int cantidadVehiculos = Math.min(4, vehiculos.size()); // Selecciona hasta 4 vehículos o la cantidad disponible
+        List<Vehiculo> vehiculosAleatorios = vehiculos.subList(0, cantidadVehiculos);
 
         return vehiculosAleatorios.stream()
                 .map(vehiculo -> modelMapper.map(vehiculo, VehiculoSalidaDto.class))
                 .collect(Collectors.toList());
     }
+
+
 
     @Override
     public List<VehiculoSalidaDto> listarVehiculos() {
@@ -115,18 +146,32 @@ public class VehiculoService implements IVehiculoService {
     }
 
 
-
-
     private void configureMapping() {
-        modelMapper.typeMap(VehiculoEntradaDto.class, Vehiculo.class)
-                .addMappings(mapper -> mapper.map(VehiculoEntradaDto::getImagenes, Vehiculo::setImagenes));
-
-        modelMapper.typeMap(Vehiculo.class, VehiculoSalidaDto.class)
-                .addMappings(mapper -> mapper.map(Vehiculo::getImagenes, VehiculoSalidaDto::setImagenes));
+        if (modelMapper.getTypeMap(CategoriaEntradaDto.class, Categoria.class) == null) {
+            modelMapper.createTypeMap(CategoriaEntradaDto.class, Categoria.class)
+                    .addMappings(mapper -> mapper.skip(Categoria::setId));
+        }
+        if (modelMapper.getTypeMap(Categoria.class, CategoriaSalidaDto.class) == null) {
+            modelMapper.createTypeMap(Categoria.class, CategoriaSalidaDto.class);
+        }
+        if (modelMapper.getTypeMap(Vehiculo.class, VehiculoSalidaDto.class) == null) {
+            modelMapper.createTypeMap(Vehiculo.class, VehiculoSalidaDto.class)
+                    .addMappings(mapper -> mapper.map(Vehiculo::getImagenes, VehiculoSalidaDto::setImagenes));
+        }
     }
+
+
 
     private Vehiculo dtoEntradaAEntidad(VehiculoEntradaDto vehiculoDto) {
         Vehiculo vehiculo = modelMapper.map(vehiculoDto, Vehiculo.class);
+
+        // Obtener la categoría existente de la base de datos por su ID
+        Long categoriaId = vehiculoDto.getCategoria().getId();
+        Categoria categoria = categoriaRepository.findById(categoriaId)
+                .orElseThrow(() -> new NoSuchElementException("No se encontró una categoría con el ID especificado: " + categoriaId));
+
+        vehiculo.setCategoria(categoria);
+
         if (vehiculoDto.getImagenes() != null) {
             List<Imagen> imagenes = vehiculoDto.getImagenes().stream()
                     .map(imagenDto -> modelMapper.map(imagenDto, Imagen.class))
@@ -137,8 +182,13 @@ public class VehiculoService implements IVehiculoService {
     }
 
     private VehiculoSalidaDto entidadADtoSalida(Vehiculo vehiculo) {
-        return modelMapper.map(vehiculo, VehiculoSalidaDto.class);
+        VehiculoSalidaDto vehiculoSalidaDto = modelMapper.map(vehiculo, VehiculoSalidaDto.class);
+
+        if (vehiculo.getCategoria() != null) {
+            CategoriaSalidaDto categoriaSalidaDto = modelMapper.map(vehiculo.getCategoria(), CategoriaSalidaDto.class);
+            vehiculoSalidaDto.setCategoria(categoriaSalidaDto);
+        }
+        return vehiculoSalidaDto;
     }
+
 }
-
-

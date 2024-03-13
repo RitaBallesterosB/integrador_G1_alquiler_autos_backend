@@ -23,8 +23,7 @@ import javax.persistence.*;
         public VehiculoCaracteristica() {
         }
 
-        public VehiculoCaracteristica(Long id, Vehiculo vehiculo, Caracteristica caracteristica) {
-            this.id = id;
+        public VehiculoCaracteristica(Vehiculo vehiculo, Caracteristica caracteristica) {
             this.vehiculo = vehiculo;
             this.caracteristica = caracteristica;
         }

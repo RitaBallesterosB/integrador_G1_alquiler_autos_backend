@@ -1,7 +1,6 @@
 package com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 public class CategoriaSalidaDto {
 

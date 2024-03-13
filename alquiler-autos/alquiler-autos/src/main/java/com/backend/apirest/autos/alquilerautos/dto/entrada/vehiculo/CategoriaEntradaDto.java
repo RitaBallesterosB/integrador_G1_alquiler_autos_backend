@@ -4,12 +4,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class CategoriaEntradaDto {
-    @Size(min = 2, max = 200, message = "El titulo  debe tener hasta 200 caracteres")
+
+    private Long id;
 
     @NotNull(message ="El titulo no debe estar nulo")
-
         private String titulo;
-    @Size(min = 2, max = 1000, message = "Descripción debe tener hasta 1000 caracteres")
+
 
     @NotNull(message ="Descripción no debe estar nulo")
         private String descripcion;
@@ -22,7 +22,8 @@ public class CategoriaEntradaDto {
     public CategoriaEntradaDto() {
     }
 
-    public CategoriaEntradaDto(String titulo, String descripcion, String urlImagen) {
+    public CategoriaEntradaDto(Long id, String titulo, String descripcion, String urlImagen) {
+        this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.urlImagen = urlImagen;
@@ -30,6 +31,14 @@ public class CategoriaEntradaDto {
 
     public String getTitulo() {
         return titulo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setTitulo(String titulo) {
