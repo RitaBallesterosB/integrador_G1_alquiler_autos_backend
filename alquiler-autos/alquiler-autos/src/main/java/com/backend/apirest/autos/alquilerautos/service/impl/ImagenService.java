@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,20 +36,39 @@ public class ImagenService  implements ImpImagenService {
     }
 
     @Override
-    public List<ImagenSalidaDto> listarGaleriaImagenes() {
-        List<Imagen> imagenes = imagenRepository.findAll();
+    public List<ImagenSalidaDto> listarGaleriaImagenes(Long vehiculoId) {
+        // Buscar imágenes relacionadas con el vehículoId dado
+        List<Imagen> imagenes = imagenRepository.findByVehiculoId(vehiculoId);
 
-        // Mezcla las imágenes aleatoriamente
-        Collections.shuffle(imagenes);
+        // Limitar la cantidad de imágenes a un máximo de 5
+        int numImagenes = Math.min(imagenes.size(), 5);
 
-        // Obtiene un número aleatorio de imágenes entre 0 y el tamaño de la lista
-        int numImagenes = Math.min(imagenes.size(), 10); // Cambia 10 al número máximo deseado
-        List<Imagen> imagenesAleatorias = imagenes.stream()
+        // Obtener las primeras 5 imágenes o menos si hay menos disponibles
+        List<Imagen> imagenesLimitadas = imagenes.stream()
                 .limit(numImagenes)
                 .collect(Collectors.toList());
 
         // Convierte las imágenes en objetos ImagenSalidaDto
-        return imagenesAleatorias.stream()
+        return imagenesLimitadas.stream()
+                .map(this::entidadADtoSalida)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ImagenSalidaDto> listarGaleriaImagenesVerMas(Long vehiculoId) {
+        // Buscar imágenes relacionadas con el vehículoId dado
+        List<Imagen> imagenes = imagenRepository.findByVehiculoId(vehiculoId);
+
+        // Limitar la cantidad de imágenes a un máximo de 10
+        int numImagenes = Math.min(imagenes.size(), 10);
+
+        // Obtener las primeras 10 imágenes o menos si hay menos disponibles
+        List<Imagen> imagenesLimitadas = imagenes.stream()
+                .limit(numImagenes)
+                .collect(Collectors.toList());
+
+        // Convierte las imágenes en objetos ImagenSalidaDto
+        return imagenesLimitadas.stream()
                 .map(this::entidadADtoSalida)
                 .collect(Collectors.toList());
     }
@@ -65,6 +83,8 @@ public class ImagenService  implements ImpImagenService {
                 .map(this::entidadADtoSalida)
                 .collect(Collectors.toList());
     }
+
+
     private void configureMapping() {
         modelMapper.typeMap(ImagenEntradaDto.class, Imagen.class);
         modelMapper.typeMap(Imagen.class, ImagenSalidaDto.class)
