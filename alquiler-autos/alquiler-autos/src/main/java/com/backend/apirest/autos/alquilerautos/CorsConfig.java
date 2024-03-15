@@ -1,4 +1,4 @@
-package com.backend.apirest.autos.alquilerautos.config;
+package com.backend.apirest.autos.alquilerautos;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
