@@ -25,6 +25,7 @@ public class UsuarioService implements IUsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
+
     public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
@@ -71,7 +72,7 @@ public class UsuarioService implements IUsuarioService {
 
 
     @Override
-    public void registrarUsuario(UsuarioEntradaDto usuarioDto) {
+    public Long registrarUsuario(UsuarioEntradaDto usuarioDto) {
         // Verificar si el usuario ya está registrado
         if (usuarioRepository.findByCorreoElectronico(usuarioDto.getCorreoElectronico()).isPresent()) {
             throw new UsuarioNotFoundException("El usuario ya está registrado");
@@ -93,9 +94,13 @@ public class UsuarioService implements IUsuarioService {
 
         usuario.setContrasenia(contraseniaCodificada);
 
-        // Guardar el nuevo usuario en la base de datos
-        usuarioRepository.save(usuario);
+        Usuario usuarioRegistrado = usuarioRepository.save(usuario);
+
+        // Devolver el ID del usuario registrado
+        return usuarioRegistrado.getIdUsuario();
     }
+
+
 
     @Override
     public void administrarUsuario(Long idUsuario, boolean isAdmin) {

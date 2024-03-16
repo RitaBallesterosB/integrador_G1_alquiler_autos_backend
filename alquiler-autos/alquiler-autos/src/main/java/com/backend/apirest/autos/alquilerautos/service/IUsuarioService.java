@@ -8,6 +8,6 @@ public interface IUsuarioService {
     public String autenticarUsuario(String correoElectronico, String contrasenia);
 
     //__________________________________________________________________________
-    public void registrarUsuario(UsuarioEntradaDto usuarioDto);
+    public Long registrarUsuario(UsuarioEntradaDto usuarioDto);
     void administrarUsuario(Long idUsuario, boolean isAdmin);
 }
