@@ -1,26 +1,23 @@
 package com.backend.apirest.autos.alquilerautos.dto.salida.usuario;
 
 
-import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.List;
-
-
-public class UsuarioSalidaDto {
+public class GestionUsuarioSalidaDto {
     private Long idUsuario;
     private String nombre;
     private String apellido;
     private String correoElectronico;
-    public UsuarioSalidaDto() {
+
+    private Integer administrador;
+
+    public GestionUsuarioSalidaDto() {
     }
 
-
-    public UsuarioSalidaDto(Long idUsuario, String nombre, String apellido, String correoElectronico) {
+    public GestionUsuarioSalidaDto(Long idUsuario, String nombre, String apellido, String correoElectronico, Integer administrador) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
+        this.administrador = administrador;
     }
 
     public Long getIdUsuario() {
@@ -55,14 +52,22 @@ public class UsuarioSalidaDto {
         this.correoElectronico = correoElectronico;
     }
 
+    public Integer getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Integer administrador) {
+        this.administrador = administrador;
+    }
 
     @Override
     public String toString() {
-        return "UsuarioSalidaDto{" +
+        return "GestionUsuarioSalidaDto{" +
                 "idUsuario=" + idUsuario +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", correoElectronico='" + correoElectronico + '\'' +
+                ", administrador=" + administrador +
                 '}';
     }
 }

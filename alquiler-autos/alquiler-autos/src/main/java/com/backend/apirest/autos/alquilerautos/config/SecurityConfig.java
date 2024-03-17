@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/vehiculos/eliminar/**").hasRole("ADMIN") // Restringir acceso a /vehiculos/eliminar/:id requiriendo autenticación y rol de administrador
                 .antMatchers(HttpMethod.POST, "/vehiculos/agregar").hasRole("ADMIN") // Restringir acceso a /vehiculos/agregar requiriendo autenticación y rol de administrador
                 .antMatchers(HttpMethod.POST, "/imagenes/agregar").hasRole("ADMIN") // Restringir acceso a /imagenes/agregar requiriendo autenticación y rol de administrador
+                .antMatchers(HttpMethod.POST, "/usuarios/registro").permitAll() // Permitir acceso sin autenticación al endpoint /usuarios/registro
                 .anyRequest().authenticated() // Restringir acceso a otras rutas que requieran autenticación
                 .and()
                 .addFilterBefore(new JwtFilter(jwtTokenProvider, customUserDetailsServiceBean(usuarioRepository)), UsernamePasswordAuthenticationFilter.class) // Agregar filtro JWT
