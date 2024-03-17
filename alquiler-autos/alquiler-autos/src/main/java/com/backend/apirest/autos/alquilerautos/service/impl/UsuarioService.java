@@ -138,6 +138,23 @@ public class UsuarioService implements IUsuarioService {
                     .map(this::entidadADtoSalida)
                     .collect(Collectors.toList());
         }
+        // actualiza el perfil del usuario a administrador o cliente
+        public GestionUsuarioSalidaDto actualizarPermisosUsuario(Long idUsuario,Integer administrador){
+
+            // Buscar el usuario en la base de datos por su ID
+            Usuario usuario = usuarioRepository.findById(idUsuario)
+                    .orElseThrow(() -> new UsuarioNotFoundException("Usuario no encontrado con ID: " + idUsuario));
+
+            // Actualizar el campo administrador
+            usuario.setAdministrador(administrador);
+
+            // Guardar los cambios en la base de datos
+            usuarioRepository.save(usuario);
+
+            // Crear y devolver un objeto de salida con los datos actualizados del usuario
+            return entidadADtoSalida(usuario);
+
+        }
 
         // Método para configurar los mapeos
         private void configureMapping() {
