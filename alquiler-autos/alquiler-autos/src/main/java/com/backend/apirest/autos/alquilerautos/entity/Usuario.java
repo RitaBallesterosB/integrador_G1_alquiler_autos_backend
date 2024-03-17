@@ -1,6 +1,7 @@
 package com.backend.apirest.autos.alquilerautos.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -19,8 +20,8 @@ public class Usuario {
     private String contrasenia;
     private Integer administrador;
 
-    @OneToOne(mappedBy = "usuario")
-    private Reserva reserva;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reserva> reservas;
 
     public Usuario() {
     }
@@ -32,7 +33,7 @@ public class Usuario {
         this.correoElectronico = correoElectronico;
         this.contrasenia = contrasenia;
         this.administrador = administrador;
-        this.reserva = reserva;
+        this.reservas = reservas;
     }
 
     public Long getIdUsuario() {
@@ -59,8 +60,11 @@ public class Usuario {
         return administrador;
     }
 
-    public Reserva getReserva() {
-        return reserva;
+    public List<Reserva> getReservas() {
+        return reservas;
     }
 
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
 }

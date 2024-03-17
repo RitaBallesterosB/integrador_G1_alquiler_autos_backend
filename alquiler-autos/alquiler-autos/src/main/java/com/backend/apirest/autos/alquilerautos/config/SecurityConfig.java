@@ -36,10 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").permitAll() // Permitir acceso sin autenticación al endpoint de login
                 .antMatchers(HttpMethod.GET, "/vehiculos/listar").permitAll() // Permitir acceso sin autenticación a /vehiculos/listar
+                .antMatchers(HttpMethod.GET, "/imagenes/galeria/**").permitAll() // Permitir acceso sin autenticación a /imagenes/galeria/{vehiculoId}
+                .antMatchers(HttpMethod.GET, "/imagenes/galeria/**/vermas").permitAll() // Permitir acceso sin autenticación a /imagenes/galeria/{vehiculoId}
                 .antMatchers(HttpMethod.DELETE, "/vehiculos/eliminar/**").hasRole("ADMIN") // Restringir acceso a /vehiculos/eliminar/:id requiriendo autenticación y rol de administrador
                 .antMatchers(HttpMethod.POST, "/vehiculos/agregar").hasRole("ADMIN") // Restringir acceso a /vehiculos/agregar requiriendo autenticación y rol de administrador
                 .antMatchers(HttpMethod.POST, "/imagenes/agregar").hasRole("ADMIN") // Restringir acceso a /imagenes/agregar requiriendo autenticación y rol de administrador
-                .antMatchers(HttpMethod.GET, "/imagenes/galeria").permitAll() // Permitir acceso sin autenticación a /imagenes/galeria
                 .anyRequest().authenticated() // Restringir acceso a otras rutas que requieran autenticación
                 .and()
                 .addFilterBefore(new JwtFilter(jwtTokenProvider, customUserDetailsServiceBean(usuarioRepository)), UsernamePasswordAuthenticationFilter.class) // Agregar filtro JWT
@@ -58,9 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    public PasswordEncoder passwordEncoder() {return NoOpPasswordEncoder.getInstance();} //{return new BCryptPasswordEncoder();}
 }
 
 

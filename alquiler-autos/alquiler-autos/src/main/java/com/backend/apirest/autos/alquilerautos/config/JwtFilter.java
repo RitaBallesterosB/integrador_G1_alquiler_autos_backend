@@ -23,7 +23,7 @@ public class JwtFilter extends GenericFilterBean {
     private final UserDetailsService userDetailsService;
 
     // Rutas que no requieren autenticación
-    private static final Set<String> UNAUTHENTICATED_PATHS = new HashSet<>(Arrays.asList("/login", "/vehiculos/listar", "/imagenes/galeria"));
+    private static final Set<String> UNAUTHENTICATED_PATHS = new HashSet<>(Arrays.asList("/login","/vehiculos/listar","/imagenes/galeria/**","/imagenes/galeria/**/vermas"));
     public JwtFilter(JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.userDetailsService = userDetailsService;
@@ -67,8 +67,22 @@ public class JwtFilter extends GenericFilterBean {
     }
 
     // Método para verificar si la ruta requiere autenticación
+    // Método para verificar si la ruta requiere autenticación
     private boolean requiresAuthentication(String requestURI) {
-        return !UNAUTHENTICATED_PATHS.contains(requestURI);
+        for (String path : UNAUTHENTICATED_PATHS) {
+            if (requestURI.startsWith(path)) {
+                // Si la ruta comienza con una de las rutas no autenticadas, devolver falso
+                return false;
+            } else if (path.contains("**")) {
+                // Si la ruta en UNAUTHENTICATED_PATHS contiene "**", verificar si coincide con la parte de la ruta antes del "**"
+                String prefix = path.substring(0, path.indexOf("**"));
+                if (requestURI.startsWith(prefix)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
+
 }
 
