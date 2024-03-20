@@ -3,6 +3,8 @@ package com.backend.apirest.autos.alquilerautos;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+
 @Configuration
 public class    Cors implements WebMvcConfigurer {
     @Override
@@ -13,5 +15,27 @@ public class    Cors implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:5173")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*");
+
+        // Configuración CORS para el endpoint de login
+        registry.addMapping("/login")
+                .allowedOrigins("http://localhost:5173")
+                .allowedMethods("POST") // Generalmente, el endpoint de login solo acepta solicitudes POST
+                .allowedHeaders("*");
+
+
+
+        // Configuración CORS para el endpoint de usuarios
+        registry.addMapping("/usuarios/**")
+                .allowedOrigins("http://localhost:5173")
+                .allowedMethods("GET", "POST", "PUT","PATCH","DELETE")
+                .allowedHeaders("*");
+
+        // Configuración CORS para el endpoint de categorias
+        registry.addMapping("/categorias/**")
+                .allowedOrigins("http://localhost:5173")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*");
+
     }
+
 }

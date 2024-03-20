@@ -1,10 +1,7 @@
 package com.backend.apirest.autos.alquilerautos.dto.salida.usuario;
 
 
-import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.List;
 
 
 public class UsuarioSalidaDto {

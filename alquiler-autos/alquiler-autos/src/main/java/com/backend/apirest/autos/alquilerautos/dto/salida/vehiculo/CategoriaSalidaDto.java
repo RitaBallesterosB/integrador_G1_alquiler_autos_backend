@@ -59,3 +59,7 @@ public class CategoriaSalidaDto {
         return "id:" + id +  ", titulo:'" + titulo + '\'' + ", descripcion:'" + descripcion + '\'' + ", urlImagen:'" + urlImagen + '\'' + '}';
     }
 }
+
+
+
+

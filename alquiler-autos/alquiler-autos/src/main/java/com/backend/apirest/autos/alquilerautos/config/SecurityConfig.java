@@ -36,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").permitAll() // Permitir acceso sin autenticación al endpoint de login
                 .antMatchers(HttpMethod.GET, "/vehiculos/listar").permitAll() // Permitir acceso sin autenticación a /vehiculos/listar
+                .antMatchers(HttpMethod.GET, "/vehiculos/aleatorios").permitAll() // Permitir acceso sin autenticación a /vehiculos/aleatorios
+                .antMatchers(HttpMethod.GET, "/vehiculos/**").permitAll() // Permitir acceso sin autenticación a /vehiculos/id
                 .antMatchers(HttpMethod.GET, "/imagenes/galeria/**").permitAll() // Permitir acceso sin autenticación a /imagenes/galeria/{vehiculoId}
                 .antMatchers(HttpMethod.GET, "/imagenes/galeria/**/vermas").permitAll() // Permitir acceso sin autenticación a /imagenes/galeria/{vehiculoId}
                 .antMatchers(HttpMethod.DELETE, "/vehiculos/eliminar/**").hasRole("ADMIN") // Restringir acceso a /vehiculos/eliminar/:id requiriendo autenticación y rol de administrador
@@ -44,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/usuarios/listar").hasRole("ADMIN") // Restringir acceso a /usuarios/listar requiriendo autenticacion y rol de administrador
                 .antMatchers(HttpMethod.POST, "/usuarios/registro").permitAll() // Permitir acceso sin autenticación al endpoint /usuarios/registro
                 .antMatchers(HttpMethod.PUT,"/usuarios/permisos/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/categorias/**").hasRole("ADMIN")
                 .anyRequest().authenticated() // Restringir acceso a otras rutas que requieran autenticación
                 .and()
                 .addFilterBefore(new JwtFilter(jwtTokenProvider, customUserDetailsServiceBean(usuarioRepository)), UsernamePasswordAuthenticationFilter.class) // Agregar filtro JWT
