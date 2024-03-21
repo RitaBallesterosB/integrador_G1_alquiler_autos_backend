@@ -3,6 +3,7 @@ package com.backend.apirest.autos.alquilerautos.controller;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.ImagenEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
+import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.exceptions.BadRequestException;
 import com.backend.apirest.autos.alquilerautos.service.IVehiculoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,11 +11,13 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.text.ParseException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/vehiculos")
@@ -96,5 +99,36 @@ public class VehiculoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(jsonResponse);
         }
     }
+   //Metodo de buscar vehiculos
+   @GetMapping("/busqueda")
+   public ResponseEntity<?> buscarVehiculos(@RequestBody(required = false) Map<String, Object> requestBody) throws ParseException {
+       try {
+           if (requestBody == null || requestBody.isEmpty()) {
+               // Manejar el caso en el que no se proporciona ningún parámetro en el cuerpo
+               // Puedes devolver una lista vacía o un mensaje de error, dependiendo de tu lógica de negocio
+               return ResponseEntity.ok(Collections.emptyList());
+           }
+
+           // Extrae los parámetros del cuerpo de la solicitud
+           String consulta = (String) requestBody.get("consulta");
+           List<Long> categoria = new ArrayList<>();
+
+           if (requestBody.containsKey("categoria") && requestBody.get("categoria") != null) {
+               categoria = ((List<Integer>) requestBody.get("categoria")).stream()
+                       .map(Long::valueOf)
+                       .collect(Collectors.toList());
+           }
+           String fechaInicial = (String) requestBody.get("fechaInicial");
+           String fechaFinal = (String) requestBody.get("fechaFinal");
+
+           List<VehiculoSalidaDto> vehiculos = vehiculoService.buscarVehiculos(consulta, categoria, fechaInicial, fechaFinal);
+           //System.out.println(vehiculos);
+           return new ResponseEntity<>(vehiculos, HttpStatus.OK);
+       } catch (HttpMessageNotWritableException e) {
+           // Manejar la excepción aquí (p. ej., registrarla, devolver un mensaje de error personalizado, etc.)
+           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al serializar la respuesta JSON");
+       }
+   }
+
 
 }

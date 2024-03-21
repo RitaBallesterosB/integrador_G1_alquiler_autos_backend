@@ -3,9 +3,13 @@ package com.backend.apirest.autos.alquilerautos.service.impl;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.CategoriaEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.ImagenEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntradaDto;
+import com.backend.apirest.autos.alquilerautos.dto.salida.usuario.ReservaSalidaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.CategoriaSalidaDto;
+import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.ImagenSalidaDto;
+import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoConReservaSalidaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
 import com.backend.apirest.autos.alquilerautos.entity.Categoria;
+import com.backend.apirest.autos.alquilerautos.entity.Reserva;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.entity.Imagen;
 import com.backend.apirest.autos.alquilerautos.repository.ImagenRepository;
@@ -17,6 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -145,7 +152,125 @@ public class VehiculoService implements IVehiculoService {
         vehiculoRepository.deleteById(id);
     }
 
+//---------------------------------------------------------------------------------------
+public List<VehiculoSalidaDto> buscarVehiculos(String consulta, List<Long> categoria, String fechaEntrega, String fechaDevolucion) throws ParseException {
+    List<VehiculoSalidaDto> vehiculosDTO = new ArrayList<>();
+    List<Vehiculo> vehiculos = new ArrayList<>();
 
+    if (consulta == null || consulta.isEmpty()) {
+        // Si no hay consulta, pero hay al menos una categoría especificada
+        if (categoria != null && !categoria.isEmpty()) {
+            vehiculos = vehiculoRepository.findByCategoria_IdIn(categoria);
+        } else {
+            vehiculos = vehiculoRepository.findAll();
+        }
+
+        // Filtrar vehículos reservados para las fechas dadas, si se proporcionan
+        if (fechaEntrega != null && !fechaEntrega.isEmpty() && fechaDevolucion != null && !fechaDevolucion.isEmpty()) {
+            vehiculos = filtrarVehiculosReservados(vehiculos, fechaEntrega, fechaDevolucion);
+        }
+    } else {
+        // Si hay una consulta, pero no hay categoría especificada
+        if (categoria == null || categoria.isEmpty()) {
+            vehiculos = vehiculoRepository.findByNombreContainingIgnoreCase(consulta);
+        } else {
+            vehiculos = vehiculoRepository.findByNombreContainingIgnoreCaseAndCategoria_IdIn(consulta, categoria);
+        }
+
+        // Filtrar vehículos reservados para las fechas dadas, si se proporcionan
+        if (fechaEntrega != null && !fechaEntrega.isEmpty() && fechaDevolucion != null && !fechaDevolucion.isEmpty()) {
+            vehiculos = filtrarVehiculosReservados(vehiculos, fechaEntrega, fechaDevolucion);
+        }
+    }
+
+    // Convertir los vehículos obtenidos a vehículosDTO
+    for (Vehiculo vehiculo : vehiculos) {
+        VehiculoSalidaDto vehiculoDTO = new VehiculoSalidaDto();
+        vehiculoDTO.setId(vehiculo.getId());
+        vehiculoDTO.setNombre(vehiculo.getNombre());
+        vehiculoDTO.setDescripcion(vehiculo.getDescripcion());
+
+        // Convertir la lista de entidades Imagen a una lista de DTO ImagenSalidaDto
+        List<ImagenSalidaDto> imagenesDTO = new ArrayList<>();
+        for (Imagen imagen : vehiculo.getImagenes()) {
+            ImagenSalidaDto imagenDTO = new ImagenSalidaDto();
+            imagenDTO.setNombre(imagen.getNombre()); // Asignar el nombre de la imagen
+            imagenDTO.setUrl(imagen.getUrl()); // Asignar la URL de la imagen
+            // Copiar otras propiedades de la entidad Imagen a la entidad DTO ImagenSalidaDto si es necesario
+            // imagenDTO.setPropiedad(imagen.getPropiedad());
+            imagenesDTO.add(imagenDTO);
+        }
+        vehiculoDTO.setImagenes(imagenesDTO);
+
+        // Convertir la entidad Categoria a DTO CategoriaSalidaDto
+        CategoriaSalidaDto categoriaDTO = new CategoriaSalidaDto();
+        categoriaDTO.setId(vehiculo.getCategoria().getId());
+        // Copiar otras propiedades de la entidad Categoria a la entidad DTO CategoriaSalidaDto si es necesario
+        // categoriaDTO.setPropiedad(vehiculo.getCategoria().getPropiedad());
+        vehiculoDTO.setCategoria(categoriaDTO);
+
+        vehiculosDTO.add(vehiculoDTO);
+    }
+
+    return vehiculosDTO;
+}
+
+    private List<Vehiculo> filtrarVehiculosReservados(List<Vehiculo> vehiculos, String fechaEntrega, String fechaDevolucion) throws ParseException {
+        List<Vehiculo> vehiculosFiltrados = new ArrayList<>();
+
+        // Convertir las fechas de tipo String a tipo Date (asumiendo que están en un formato adecuado)
+        Date fechaInicio = convertirStringADate(fechaEntrega);
+        Date fechaFin = convertirStringADate(fechaDevolucion);
+
+        // Si no hay vehículos, devolver una lista vacía
+        if (vehiculos.isEmpty()) {
+            return vehiculosFiltrados;
+        }
+
+        for (Vehiculo vehiculo : vehiculos) {
+            // Si el vehículo no tiene reservas, agregarlo directamente a la lista de vehículos filtrados
+            if (vehiculo.getReservas().isEmpty()) {
+                System.out.println("filtado");
+                vehiculosFiltrados.add(vehiculo);
+            }else{
+                boolean disponible = true;
+                System.out.println(vehiculo.getReservas());
+                // Verificar si hay alguna superposición entre las fechas de reserva y las fechas dadas
+                for (Reserva reserva : vehiculo.getReservas()) {
+
+                    Date fechaReservaInicio = reserva.getFechaEntrega();
+                    Date fechaReservaFin = reserva.getFechaDevolucion();
+
+                    // Verificar si hay superposición entre los intervalos de tiempo de la reserva y las fechas dadas
+                    if (!(fechaReservaInicio.after(fechaFin) || fechaReservaFin.before(fechaInicio))) {
+                        System.out.println("entro");
+                        disponible = false;
+                        break; // No es necesario seguir buscando más reservas para este vehículo
+                    }
+                }
+
+                // Si el vehículo está disponible para las fechas dadas, agrégalo a la lista de vehículos filtrados
+                if (disponible) {
+                    vehiculosFiltrados.add(vehiculo);
+                }
+            }
+
+        }
+        System.out.println(vehiculosFiltrados);
+        return vehiculosFiltrados;
+    }
+
+
+
+    private Date convertirStringADate(String fechaStr) throws ParseException {
+        // Define el formato de fecha esperado
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        // Intenta parsear el String a Date
+        Date fecha = formatter.parse(fechaStr);
+
+        return fecha;
+    }
     private void configureMapping() {
         if (modelMapper.getTypeMap(CategoriaEntradaDto.class, Categoria.class) == null) {
             modelMapper.createTypeMap(CategoriaEntradaDto.class, Categoria.class)

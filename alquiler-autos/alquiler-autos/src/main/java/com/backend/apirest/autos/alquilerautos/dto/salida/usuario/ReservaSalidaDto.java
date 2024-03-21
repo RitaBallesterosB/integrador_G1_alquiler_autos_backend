@@ -1,35 +1,31 @@
-package com.backend.apirest.autos.alquilerautos.dto.entrada.usuario;
+package com.backend.apirest.autos.alquilerautos.dto.salida.usuario;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class reservaEntradaDto {
-    @NotNull(message = "El idVehiculo no debe estar nulo")
-    @NotBlank(message = "El idVehiculo no debe estar en blanco")
+public class ReservaSalidaDto {
+    private Long id;
     private Long idVehiculo;
-    @NotNull(message = "El idUsuario no debe estar nulo")
-    @NotBlank(message = "El idUsuario no debe estar en blanco")
     private Long idUsuario;
-
     private Date fechaEntrega;
-
     private Date fechaDevolucion;
 
-    // Constructor vacío
-    public reservaEntradaDto() {
+    public ReservaSalidaDto() {
     }
 
-    // Constructor con todos los campos
-    public reservaEntradaDto(Long idVehiculo, Long idUsuario, Date fechaEntrega, Date fechaDevolucion) {
+    public ReservaSalidaDto(Long id, Long idVehiculo, Long idUsuario, Date fechaEntrega, Date fechaDevolucion) {
+        this.id = id;
         this.idVehiculo = idVehiculo;
         this.idUsuario = idUsuario;
         this.fechaEntrega = fechaEntrega;
         this.fechaDevolucion = fechaDevolucion;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getIdVehiculo() {
@@ -64,6 +60,4 @@ public class reservaEntradaDto {
         this.fechaDevolucion = fechaDevolucion;
     }
 }
-
-
 

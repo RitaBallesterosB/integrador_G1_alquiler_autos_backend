@@ -23,7 +23,7 @@ public class JwtFilter extends GenericFilterBean {
     private final UserDetailsService userDetailsService;
 
     // Rutas que no requieren autenticación
-    private static final Set<String> UNAUTHENTICATED_PATHS = new HashSet<>(Arrays.asList("/login","/vehiculos/listar","/imagenes/galeria/**","/imagenes/galeria/**/vermas","/usuarios/registro"));
+    private static final Set<String> UNAUTHENTICATED_PATHS = new HashSet<>(Arrays.asList("/login","/vehiculos/listar","/imagenes/galeria/**","/imagenes/galeria/**/vermas","/usuarios/registro","/vehiculos/busqueda"));
 
     public JwtFilter(JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService) {
         this.jwtTokenProvider = jwtTokenProvider;

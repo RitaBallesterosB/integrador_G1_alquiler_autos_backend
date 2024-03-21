@@ -108,5 +108,18 @@ public class Vehiculo {
     public void setReservas(List<Reserva> reservas) {
         this.reservas = reservas;
     }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", imagenes=" + imagenes +
+                ", categoria=" + categoria +
+                ", caracteristicas=" + caracteristicas +
+                ", reservas=" + reservas +
+                '}';
+    }
 }
 

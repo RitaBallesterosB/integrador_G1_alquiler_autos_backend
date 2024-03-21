@@ -19,16 +19,23 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiZW1haWwiOiJqb3NlLmppbWVuZXpAZXhhbXBsZS5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTA4MTU0NDksImV4cCI6MTcxMDkwMTg0OX0.CGQHLn3qTeTSy2ixjgVfLKRsCMioL6ZZWiJNNQYhrYQgFewQsm01AwYjKXDUwZnLdqxESst-YVK8uYkmgXFSng",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"marcaYClase\":\"dsfsdfd\",\r\n    \"descripcion\":\"grdfgbdhf fdfdddddddddddddddddddddddd\",\r\n    \"imagen\": {\r\n        \"nombre\":\"cualquiervaina.jpg\",\r\n        \"url\": \"https://ejemplo.com/a/la/imagen.jpg\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"nombre\": \" prueba11616\",\r\n    \"descripcion\": \"Este es un vehículo de prueba para pruebas de integración51\",\r\n    \"imagenes\": [\r\n        {\r\n            \"nombre\": \"camioneta11211.jpg\",\r\n            \"url\": \"https://exampkljhile.com/imagen1.jpg\"\r\n        },\r\n        {\r\n            \"nombre\": \"camioneta2121.jpg\",\r\n            \"url\": \"https://exaoijuioumple.com/imagen2.jpg\"\r\n        }\r\n    ],\r\n    \"categoria\": {\r\n        \"id\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,13 +136,24 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJyaXRhYmFsbGVzQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MTAzNzUzNDUsImV4cCI6MTcxMDQ2MTc0NX0.jyJxWu_1M2ZA2POd2U7W9vsiNajxpVHJF2rCR7uhzEBcLqw_xpEJdHLlNhA3WCtPOoVTeceRvDMA8Jmw75VOcQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "localhost:8081/vehiculos/listar",
 							"host": [
@@ -222,7 +240,7 @@
 					]
 				},
 				{
-					"name": "EliminarVehiculos",
+					"name": "Vehiculos aleatorias",
 					"event": [
 						{
 							"listen": "test",
@@ -230,23 +248,23 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8081/vehiculos/eliminar/1",
+							"raw": "localhost:8081/vehiculos/aleatorios",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
 								"vehiculos",
-								"eliminar",
-								"1"
+								"aleatorios"
 							]
 						},
 						"description": "Gets information about the authenticated user."
@@ -322,6 +340,363 @@
 							"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
 						}
 					]
+				},
+				{
+					"name": "EliminarVehiculos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiZW1haWwiOiJqb3NlLmppbWVuZXpAZXhhbXBsZS5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTA4MTYyNzUsImV4cCI6MTcxMDkwMjY3NX0.OfhBbloaXhAz6EP-scWAiXgWVf9q2RKdgyuwDl3gTyjwyqI2i_OO1cKHm9vVKiiKXDH6OyUW_KITGCyB2Ns-lw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8081/vehiculos/eliminar/21",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"vehiculos",
+								"eliminar",
+								"21"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "Busqueda",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"consulta\":\"Hyunda\",\r\n    \"categoria\": [1],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/vehiculos/busqueda",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"vehiculos",
+								"busqueda"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": [
+						{
+							"name": "consulta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"consulta\": \"Toyota\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/vehiculos/busqueda",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"vehiculos",
+										"busqueda"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Toyota Prius\",\n        \"descripcion\": \"Este auto electrico con diseño vanguardista y cautivador inspira tu manejo, con tecnología avanzada, eficiencia de combustible y la confiabilidad que ya conoces\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Toyota Prius-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-01.png?alt=media&token=2b501b5d-95ad-455d-b915-11a890a283f1\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-02.png?alt=media&token=8e48874b-52aa-4c36-8877-3bbed45595ee\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-03.png?alt=media&token=b4a82602-44ce-4861-9e34-825321e721bf\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-04.png?alt=media&token=32fd316e-27c7-4b43-af3c-04e8c51c49ad\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-05.png?alt=media&token=409f76d4-f38e-4ab6-bc3d-b7cd05c582b7\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    }\n]"
+						},
+						{
+							"name": "categoria",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoria\": [3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/vehiculos/busqueda",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"vehiculos",
+										"busqueda"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 26,\n        \"nombre\": \"Renault Trafic\",\n        \"descripcion\": \"soluciones originales para conseguir que el espacio de carga sea más práctico que nunca. Utiliza una amplia gama de recursos para proponerle una de las mejores capacidades de carga del mercado. Esta equipada con un motor que ofrece 170 caballos de potencia y 380 Nm de torque.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Renault Trafic-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-04.png?alt=media&token=c381b7db-b906-48f9-bb4d-8f271f1dbd8c\"\n            },\n            {\n                \"nombre\": \"Renault Trafic-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-02.png?alt=media&token=95784930-c62f-4352-b040-418b35b58de3\"\n            },\n            {\n                \"nombre\": \"Renault Trafic-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-03.png?alt=media&token=08d94c46-8f43-4b2c-82ab-e14e197bec52\"\n            },\n            {\n                \"nombre\": \"Renault Trafic-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-01.png?alt=media&token=204d438d-1504-4d2d-9e37-0a438f0bf9b8\"\n            },\n            {\n                \"nombre\": \"Renault Trafic-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-05.png?alt=media&token=1c29c64d-93ff-4c60-bd02-3b6af6244c11\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 27,\n        \"nombre\": \"Mercedes Benz Sprinter\",\n        \"descripcion\": \"Estas vans Mercedes-Benz se destacan por su versatilidad, ofreciendo modelos adaptados a cada tipo de negocio, ya sea carga, ambulancias, aplicaciones especiales o transporte de pasajeros. Con una amplia gama de variantes y equipamientos personalizables, satisfacemos las necesidades de nuestros clientes de manera precisa.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-01.png?alt=media&token=417c7d74-b3a4-4b25-a6ce-12f5f8b297c4\"\n            },\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-02.png?alt=media&token=24b6de9d-4df3-4ad2-be51-700e9cd2dd43\"\n            },\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-03.png?alt=media&token=cb82007e-29c2-4468-896f-7bc333c860c6\"\n            },\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-04.png?alt=media&token=6b8ab179-7b4f-4ab5-9ba9-0dd759d28475\"\n            },\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-05.png?alt=media&token=0be486de-a086-4c1b-8a84-5de7889bd5b6\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 28,\n        \"nombre\": \"Peugeot Expert\",\n        \"descripcion\": \"Cuando conozcas como trabajan y cuanto te ayudan, el resto de utilitarios parecerán principiantes.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Peugeot Expert-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-01.png?alt=media&token=558bde3a-63e5-4c21-8b37-f209dd2f1492\"\n            },\n            {\n                \"nombre\": \"Peugeot Expert-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-02.png?alt=media&token=d4cf7167-6151-4b5d-aa08-5fc83f56f4a1\"\n            },\n            {\n                \"nombre\": \"Peugeot Expert-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-03.png?alt=media&token=71dd3bff-cf2c-4cf9-b3de-4347fd2d0c1b\"\n            },\n            {\n                \"nombre\": \"Peugeot Expert-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-04.png?alt=media&token=d02572cd-45ac-4758-af89-a4c1b7819105\"\n            },\n            {\n                \"nombre\": \"Peugeot Expert-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-05.png?alt=media&token=f2b985a2-591e-454d-aff1-6481311e49ea\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 29,\n        \"nombre\": \"DFSK C37X9 \",\n        \"descripcion\": \"Pensando en una experiencia segura con espacio y conford para todos.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"DFSK C37X9-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-01.png?alt=media&token=4e3badfe-ebc0-4ad0-8468-054b9edb63b1\"\n            },\n            {\n                \"nombre\": \"DFSK C37X9-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-02.png?alt=media&token=5023a3f9-d859-4f0f-9992-67af45dc9800\"\n            },\n            {\n                \"nombre\": \"DFSK C37X9-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-03.png?alt=media&token=193abb18-d8e0-4a99-b9f0-98f0286db860\"\n            },\n            {\n                \"nombre\": \"DFSK C37X9-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-04.png?alt=media&token=ad0f0610-829e-4738-bddb-9fa8b06dbd23\"\n            },\n            {\n                \"nombre\": \"DFSK C37X9-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-05.png?alt=media&token=0ea9fed6-2b49-4607-8aa5-5394f4b80d84\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 30,\n        \"nombre\": \"Renault Kangoo\",\n        \"descripcion\": \"La nueva Renault KANGOO será la herramienta de trabajo más versátil y moderna que aportará al desarrollo de tus proyectos. Con avanzada tecnología en seguridad, nuevo motor, diseño amplio y equipamiento útil, será el compañero ideal para extender los horizontes de tu empresa.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Renault Kangoo-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-01.png?alt=media&token=b13041de-0482-47e5-bd00-d8044e7a1e9a\"\n            },\n            {\n                \"nombre\": \"Renault Kangoo-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-02.png?alt=media&token=de80a8c3-ec5d-4dbe-972a-dab71494cd01\"\n            },\n            {\n                \"nombre\": \"Renault Kangoo-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-03.png?alt=media&token=337c0ec5-07d8-4435-a701-57178b02b970\"\n            },\n            {\n                \"nombre\": \"Renault Kangoo-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-04.png?alt=media&token=d24419a0-3904-466a-9b6e-0380dc43d52e\"\n            },\n            {\n                \"nombre\": \"Renault Kangoo-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-05.png?alt=media&token=76c8a77a-4617-4dbb-b7bb-8813e6dd2036\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    }\n]"
+						},
+						{
+							"name": "fechas",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/vehiculos/busqueda",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"vehiculos",
+										"busqueda"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Toyota Prius\",\n        \"descripcion\": \"Este auto electrico con diseño vanguardista y cautivador inspira tu manejo, con tecnología avanzada, eficiencia de combustible y la confiabilidad que ya conoces\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Toyota Prius-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-01.png?alt=media&token=2b501b5d-95ad-455d-b915-11a890a283f1\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-02.png?alt=media&token=8e48874b-52aa-4c36-8877-3bbed45595ee\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-03.png?alt=media&token=b4a82602-44ce-4861-9e34-825321e721bf\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-04.png?alt=media&token=32fd316e-27c7-4b43-af3c-04e8c51c49ad\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-05.png?alt=media&token=409f76d4-f38e-4ab6-bc3d-b7cd05c582b7\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 3,\n        \"nombre\": \"Toyota RAV4\",\n        \"descripcion\": \"Vehiculo Hibrido. Déjate guiar por tu espíritu aventurero y aprovecha cada oportunidad de salir a la carretera\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Toyota RAV4-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-01.png?alt=media&token=ceac678d-6887-4609-bbd2-a03e67e296c0\"\n            },\n            {\n                \"nombre\": \"Toyota RAV4-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-02.png?alt=media&token=a7d63d83-6d97-4f6a-a724-b8af5cd20707\"\n            },\n            {\n                \"nombre\": \"Toyota RAV4-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-03.png?alt=media&token=845ebcd3-fc99-4f03-9f7e-5078260f364d\"\n            },\n            {\n                \"nombre\": \"Toyota RAV4-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-04.png?alt=media&token=9d5e1339-1b85-47dc-ba00-805168eabfb5\"\n            },\n            {\n                \"nombre\": \"Toyota RAV4-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-05.png?alt=media&token=e7891518-62f8-4ff9-8602-4d0a64757f38\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 4,\n        \"nombre\": \"Honda Accord\",\n        \"descripcion\": \"Vehiculo Hibrido. Equilibrio ideal entre poder y refinamiento. los modelos híbridos te brindan tecnología premium y reciben una clasificación de 46 mpg en ciudad/41 en carretera.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Honda Accord-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-01.png?alt=media&token=6c6b4115-4d72-4557-a9e2-2108ed4c5623\"\n            },\n            {\n                \"nombre\": \"Honda Accord-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-02.png?alt=media&token=0608bad0-c28a-4fe3-bca2-0b8db32716ef\"\n            },\n            {\n                \"nombre\": \"Honda Accord-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-03.png?alt=media&token=55269603-3c14-461d-ba33-d5b499ab703b\"\n            },\n            {\n                \"nombre\": \"Honda Accord-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-04.png?alt=media&token=fd2a7d6f-45c5-4abc-b5cd-9be6a79ef549\"\n            },\n            {\n                \"nombre\": \"Honda Accord-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-05.png?alt=media&token=ca45946e-c1bd-42d2-ba03-90fe3ffdab2b\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 5,\n        \"nombre\": \"Honda CR-V\",\n        \"descripcion\": \"Listo para asumir desafios mas grandes. La CR-V es un vehiculo amplio que te brinda la versatilidad para afrontar todo tipo de aventuras, desde la ciudad hasta el campo\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Honda CRV-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F5%20Honda%20CR-V%20%20Hybrid-01.png?alt=media&token=ff8a1021-0c5c-4ea5-b394-8a08da637055\"\n            },\n            {\n                \"nombre\": \"Honda CRV-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F5%20Honda%20CR-V%20%20Hybrid-02.png?alt=media&token=451d715d-523f-40b4-af86-d71f05595874\"\n            },\n            {\n                \"nombre\": \"Honda CRV-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F5%20Honda%20CR-V%20%20Hybrid-03.png?alt=media&token=3f183a8f-5c0a-4c18-b3b0-8caf28d15259\"\n            },\n            {\n                \"nombre\": \"Honda CRV-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F5%20Honda%20CR-V%20%20Hybrid-04.png?alt=media&token=e68ab5de-8d68-4fad-a84b-9bd54c465788\"\n            },\n            {\n                \"nombre\": \"Honda CRV-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F5%20Honda%20CR-V%20%20Hybrid-05.png?alt=media&token=35b01123-c1a5-4264-962f-12c4121355da\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 6,\n        \"nombre\": \"Ford Escape\",\n        \"descripcion\": \"Descubre la Nueva Ford Escape® Completamente Híbrida y su eficiencia sin precedentes. La mejor combinación entre desempeño y eficiencia\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Ford Escape-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F6%20Ford%20Escape%20Hybrid-01.png?alt=media&token=e13f1de5-7b77-4ae9-bb95-e2bac60c0ba9\"\n            },\n            {\n                \"nombre\": \"Ford Escape-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F6%20Ford%20Escape%20Hybrid-02.png?alt=media&token=0bcec96d-3d2e-4611-a723-37426b87af72\"\n            },\n            {\n                \"nombre\": \"Ford Escape-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F6%20Ford%20Escape%20Hybrid-03.png?alt=media&token=fb53b38c-5b08-4426-a636-dc4b1f6be03c\"\n            },\n            {\n                \"nombre\": \"Ford Escape-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F6%20Ford%20Escape%20Hybrid-04.png?alt=media&token=1a2755b7-2b76-4092-92cd-a7361431a626\"\n            },\n            {\n                \"nombre\": \"Ford Escape-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F6%20Ford%20Escape%20Hybrid-05.png?alt=media&token=2c13d457-dd0b-4f91-9ce8-e3bf510cb279\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 7,\n        \"nombre\": \"Ford Mustang Mach-e\",\n        \"descripcion\": \"Totalmente electrico con un diseño llamativo que combina el increíble desempeño deportivo de un auto deportivo con la emoción de un VE. Potencia, desempeño y un toque de rebeldía\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Ford Mustang Match-e-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F7%20Ford%20Mustang%20Match-e%20Electrico-01.png?alt=media&token=3b9a7da7-6519-42fe-bc99-da63bbf8b6d6\"\n            },\n            {\n                \"nombre\": \"Ford Mustang Match-e-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F7%20Ford%20Mustang%20Match-e%20Electrico-02.png?alt=media&token=3cc2c691-195f-4404-aa2f-605d465bb092\"\n            },\n            {\n                \"nombre\": \"Ford Mustang Match-e-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F7%20Ford%20Mustang%20Match-e%20Electrico-03.png?alt=media&token=855d7518-6094-4f7e-8c4c-f891ccc94b82\"\n            },\n            {\n                \"nombre\": \"Ford Mustang Match-e-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F7%20Ford%20Mustang%20Match-e%20Electrico-04.png?alt=media&token=f02226f0-f0ad-4735-9f2b-b59b93a06e68\"\n            },\n            {\n                \"nombre\": \"Ford Mustang Match-e-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F7%20Ford%20Mustang%20Match-e%20Electrico-05.png?alt=media&token=39e9bb8b-db37-4617-aefa-291308f95c56\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 8,\n        \"nombre\": \"Chevrolet Bolt\",\n        \"descripcion\": \"Totalmente electrico. El Chevrolet Bolt EUV tiene lo que se necesita para ser tu primer auto eléctrico: eficiencia excepcional, tecnología de punta y un diseño increíble.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Chevrolet Bolt-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F8%20Chevrolet%20Bolt%20-01.png?alt=media&token=4283ffc5-7d50-4fe5-938f-e41bfcdb34fe\"\n            },\n            {\n                \"nombre\": \"Chevrolet Bolt-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F8%20Chevrolet%20Volt%20-02.png?alt=media&token=f659b291-5518-4473-b530-74732bd4871b\"\n            },\n            {\n                \"nombre\": \"Chevrolet Bolt-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F8%20Chevrolet%20Volt%20-03.png?alt=media&token=ed5d97f7-283e-4604-a6ba-295db7b7b5b6\"\n            },\n            {\n                \"nombre\": \"Chevrolet Bolt-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F8%20Chevrolet%20Volt%20-04.png?alt=media&token=8c66ca96-4986-4808-9d15-b572d3f090de\"\n            },\n            {\n                \"nombre\": \"Chevrolet Bolt-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F8%20Chevrolet%20Volt%20-05.png?alt=media&token=75a6e11f-8ccf-4237-89d8-42ef49c5691c\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 9,\n        \"nombre\": \"Hyundai Kona\",\n        \"descripcion\": \"Con su nuevo aspecto futurista, una presencia en carretera más dinámica y mayor espacio para tus aventuras, este atrevido SUV totalmente eléctrico te ofrece tecnología inteligente de vanguardia y la mejor autonomía con hasta 683 km en ciudad para una que disfrutes de conducir un coche eléctrico sin restricciones\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Hyundai Kona-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-01.png?alt=media&token=f806b56f-c3a0-43fe-8ef5-b6c0dacca34e\"\n            },\n            {\n                \"nombre\": \"Hyundai Kona-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-02.png?alt=media&token=3041e240-d1ed-4c96-bf8c-ee5b2d3886f3\"\n            },\n            {\n                \"nombre\": \"Hyundai Kona-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-03.png?alt=media&token=b81ca54f-5d54-4b9b-81a4-782ddb94451e\"\n            },\n            {\n                \"nombre\": \"Hyundai Kona-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-04.png?alt=media&token=566f398a-c068-42d9-82c4-6b37b00b854f\"\n            },\n            {\n                \"nombre\": \"Hyundai Kona-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-05.png?alt=media&token=ca75cacb-2049-44dc-8161-e757b57cec61\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 10,\n        \"nombre\": \"Hyundai Ioniq\",\n        \"descripcion\": \"La SUV KONA hibrida, que utiliza energia eléctrica para llegar más lejos con menos consumo de combustible. Gracias a su innovador tren de potencia híbrido, la nueva Hyundai KONA combina un aspecto irresistiblemente atractivo con una eficiencia de combustible excepcional. Todo sin tener que cargar una batería o cambiar tus hábitos actuales de conducción.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Hyundai Ionic-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-01.png?alt=media&token=58daea2e-c129-4722-bfbd-9fa5c0084273\"\n            },\n            {\n                \"nombre\": \"Hyundai Ionic-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-02.png?alt=media&token=f6b43730-a38b-4872-825d-da954ec87d21\"\n            },\n            {\n                \"nombre\": \"Hyundai Ionic-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-03.png?alt=media&token=aafe868c-72ea-4b87-a997-49976adae3bc\"\n            },\n            {\n                \"nombre\": \"Hyundai Ionic-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-04.png?alt=media&token=cdbbfa73-df0d-4a46-b61f-44cda29c5e6a\"\n            },\n            {\n                \"nombre\": \"Hyundai Ionic-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-05.png?alt=media&token=b45a8d9f-e6df-4837-afb2-34e80b57f77a\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 11,\n        \"nombre\": \"Chevrolet Malibu\",\n        \"descripcion\": \"El motor estándar del Malibu es un motor Ecotec de 2,4 litros y cuatro cilindros con consumo eficiente de combustible, 169 caballos de fuerza (126 kW) y una economía de combustible estimada por la EPA de 22 mpg en ciudad y 33 mpg en carretera.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Chevrolet Malibu-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-01.png?alt=media&token=5d0a9e8d-558d-4b6f-81e1-466f24f872e5\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-02.png?alt=media&token=30a96374-49ba-4c9f-ab7c-0dc8d1e536ac\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-03.png?alt=media&token=ce2d9653-7f2d-4959-a704-498934e0d905\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-04.png?alt=media&token=5436902d-4335-47c9-990b-e4a936da8572\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-05.png?alt=media&token=4f017eb9-d20a-49e3-948b-df0b5c6e51b1\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 12,\n        \"nombre\": \"hyundai Sonata\",\n        \"descripcion\": \"El tren motriz avanzado del SONATA Hybrid le brinda una autonomía combinada de 192 hp con mucho torque en el instante en que presione el acelerador, gracias a su motor eléctrico de 39 kW. Sin mencionar una transmisión automática de 6 velocidades con mandos y suspensión trasera independiente multienlace, para brindarle más emoción aún\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Hyundai Sonata-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-01.png?alt=media&token=78978839-cf75-47e4-8734-78785e395152\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-02.png?alt=media&token=044a0e6b-48c3-4660-a440-ee25874833b6\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-03.png?alt=media&token=c975ca4d-9c32-43f2-b46e-44fbdec4254a\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-04.png?alt=media&token=901d8c4c-dfed-45b6-94ff-ebe7aea77c0b\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-05.png?alt=media&token=a574cc54-927b-4683-8e2f-d8f410dce837\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 13,\n        \"nombre\": \"Kia Niro\",\n        \"descripcion\": \"La nueva Kia Niro cuenta con un motor híbrido con tecnología Smartstream que ofrece mayor eficiencia y es amigable con el medio ambiente. Este está compuesto por un motor 1.6L de gasolina y un motor eléctrico de 240V DC que combinados llegan a una potencia de 139hp y un torque de 265NM.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Kia Niro-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F13%20Kia%20Niro-01.png?alt=media&token=c16ddfbc-4655-49b3-a0e9-9c645cfdf8cb\"\n            },\n            {\n                \"nombre\": \"Kia Niro-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F13%20Kia%20Niro-02.png?alt=media&token=22ba7706-8fe3-4941-af41-b484ea04d140\"\n            },\n            {\n                \"nombre\": \"Kia Niro-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F13%20Kia%20Niro-03.png?alt=media&token=ea8f9e9a-05b3-4b89-8641-6a09c856ac63\"\n            },\n            {\n                \"nombre\": \"Kia Niro-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F13%20Kia%20Niro-04.png?alt=media&token=2bd24f98-4fe9-4a87-b077-ec893b5785f6\"\n            },\n            {\n                \"nombre\": \"Kia Niro-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F13%20Kia%20Niro-05.png?alt=media&token=daff3c54-76f5-4626-952e-33e35da4575a\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 14,\n        \"nombre\": \"Kia Sportage\",\n        \"descripcion\": \"Combina a la perfección un motor de inyección eléctrica (EFI) de 2.5 litros con un potente motor eléctrico de carga automática, que brinda 214 caballos de fuerza combinada, con la máxima eficiencia de combustible.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Kia Sportage-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F14%20Sportage-01.png?alt=media&token=b4637dc3-2e6a-4f34-bba1-eab42d2e53d4\"\n            },\n            {\n                \"nombre\": \"Kia Sportage-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F14%20Sportage-02.png?alt=media&token=920b6d54-d112-47fd-b98f-5571fa79269e\"\n            },\n            {\n                \"nombre\": \"Kia Sportage-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F14%20Sportage-03.png?alt=media&token=a4e61e74-7497-4e12-81f9-6f79f776cfa9\"\n            },\n            {\n                \"nombre\": \"Kia Sportage-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F14%20Sportage-04.png?alt=media&token=1b1e7ad8-52bd-4a81-b18e-d5673efdff09\"\n            },\n            {\n                \"nombre\": \"Kia Sportage-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F14%20Sportage-05.png?alt=media&token=b514d6da-4f00-493c-8744-a3bbd4dcd4d1\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 15,\n        \"nombre\": \"Lexus RX\",\n        \"descripcion\": \"Ambas versiones de RX Hybrid Electric cuentan con el galardonado sistema de asistencias activas Lexus Safety System, con tecnologías como Auto High Beams, Lane Tracing Assist y más\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Lexus RX-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F15%20Lexus%20RX-01.png?alt=media&token=f49346fb-ef3c-444c-8b0a-39f458d93dca\"\n            },\n            {\n                \"nombre\": \"Lexus RX-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F15%20Lexus%20RX-02.png?alt=media&token=54a77b02-e2ac-4c69-ab1f-98674a34243e\"\n            },\n            {\n                \"nombre\": \"Lexus RX-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F15%20Lexus%20RX-02.png?alt=media&token=54a77b02-e2ac-4c69-ab1f-98674a34243e\"\n            },\n            {\n                \"nombre\": \"Lexus RX-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F15%20Lexus%20RX-04.png?alt=media&token=94195715-ddbf-48b7-9b0a-33835cc40345\"\n            },\n            {\n                \"nombre\": \"Lexus RX-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F15%20Lexus%20RX-04.png?alt=media&token=94195715-ddbf-48b7-9b0a-33835cc40345\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 16,\n        \"nombre\": \"BMW X1\",\n        \"descripcion\": \" tiene como base un motor a gasolina TwinPower Turbo de 2.0 litros, cuatro cilindros, 184 hp y 300 Nm de torque, unido a un motor eléctrico de 83 hp y 265 Nm. Con un enchufe de 220V se realiza la carga directamente a la corriente, pero también permite regenerar energía mediante el frenado, sistema muy eficiente según el manejoalimentado por una batería de 10,79 kWh. Combinados, logran 252 hp y 420 Nm de torque final, acoplados a una caja automática de ocho velocidades.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"BMW X1-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-01.png?alt=media&token=2768d274-b9cf-4423-ac83-ac7bbf9c3dcd\"\n            },\n            {\n                \"nombre\": \"BMW X1-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-02.png?alt=media&token=4b676eee-fb72-4cdb-8c38-51b29982f3db\"\n            },\n            {\n                \"nombre\": \"BMW X1-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-03.png?alt=media&token=c81ce746-4a8c-488f-8429-5a65aaf4d714\"\n            },\n            {\n                \"nombre\": \"BMW X1-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-04.png?alt=media&token=76123e23-2a1b-4702-a43b-6fd0ba91fb12\"\n            },\n            {\n                \"nombre\": \"BMW X1-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-05.png?alt=media&token=d354a033-f866-41a0-9863-8dd481e69240\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 17,\n        \"nombre\": \"BMW IX3\",\n        \"descripcion\": \"Las transmisiones eléctricas de nueva generación aumentan la capacidad de tu XC40 Recharge, proporcionándote una mayor autonomía y una carga rápida de CC más rápida.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"BMW IX3-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F17%20BMW%20iX3-01.png?alt=media&token=1445aaf8-e5dd-4a7a-b3fd-cf0d7b4f6ae0\"\n            },\n            {\n                \"nombre\": \"BMW IX3-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F17%20BMW%20iX3-02.png?alt=media&token=ef378148-a593-4314-9175-1cd0df5a104b\"\n            },\n            {\n                \"nombre\": \"BMW IX3-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F17%20BMW%20iX3-03.png?alt=media&token=50939369-db4b-41ec-8640-d6b7e5751885\"\n            },\n            {\n                \"nombre\": \"BMW IX3-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F17%20BMW%20iX3-04.png?alt=media&token=8c99185b-4d64-4b63-9793-059c0e20f4d5\"\n            },\n            {\n                \"nombre\": \"BMW IX3-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F17%20BMW%20iX3-05.png?alt=media&token=38a204b5-fd2c-440e-b279-e0597f6dafa1\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 18,\n        \"nombre\": \"Volvo XC40 Recharge\",\n        \"descripcion\": \"Las transmisiones eléctricas de nueva generación aumentan la capacidad de tu XC40 Recharge, proporcionándote una mayor autonomía y una carga rápida de CC más rápida.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Volvo XC40-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F18%20Volvo%20XC40-01.png?alt=media&token=8f05b7e3-65b2-4b06-8507-333e179f1375\"\n            },\n            {\n                \"nombre\": \"Volvo XC40-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F18%20Volvo%20XC40-02.png?alt=media&token=898e577b-4115-4cc4-8716-5633492a41ff\"\n            },\n            {\n                \"nombre\": \"Volvo XC40-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F18%20Volvo%20XC40-03.png?alt=media&token=8f9077dc-165d-431b-b4bb-110942c07dc8\"\n            },\n            {\n                \"nombre\": \"Volvo XC40-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F18%20Volvo%20XC40-04.png?alt=media&token=d28f2132-a0c6-4a26-aa46-f9ced0a0537b\"\n            },\n            {\n                \"nombre\": \"Volvo XC40-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F18%20Volvo%20XC40-05.png?alt=media&token=770054f5-a834-40c7-bba8-36b7c9e916c7\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 19,\n        \"nombre\": \"Volve XC60\",\n        \"descripcion\": \"Tiene un motor Twin Engine responsable con el medio ambiente gracias a su bajo nivel de emisiones de Co2, cuenta con un cilindraje de 1969 cm3 aportando al optimo desempeño gracias a su potencia de funcionamiento con 4 cilindros en linea turbo cargados y electrico\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Volvo XC60-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F19%20Volvo%20XC60-01.png?alt=media&token=4f3cfcb7-5e94-4ac4-8fcf-141602c35983\"\n            },\n            {\n                \"nombre\": \"Volvo XC60-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F19%20Volvo%20XC60-02.png?alt=media&token=3a9411a2-9b15-429f-bed9-2934575dec03\"\n            },\n            {\n                \"nombre\": \"Volvo XC60-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F19%20Volvo%20XC60-03.png?alt=media&token=6d2e46fe-01dd-4390-8616-7bef860f0bf1\"\n            },\n            {\n                \"nombre\": \"Volvo XC60-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F19%20Volvo%20XC60-04.png?alt=media&token=d69e6ee9-1718-4339-8d6e-27174b50449e\"\n            },\n            {\n                \"nombre\": \"Volvo XC60-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F19%20Volvo%20XC60-05.png?alt=media&token=6447e276-8954-442a-9394-738d762cbb91\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 20,\n        \"nombre\": \"Mitsubishi Outlander\",\n        \"descripcion\": \"Outlander PHEV es uno de los vehículos híbridos más avanzados tecnológicamente en el mercado mundial. All Wheel Control (S-AWC), capacidad de carga sobre la marcha y una autonomía puramente eléctrica de 54km que te permite moverte día a día en la ciudad con agilidad.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Mitsubishi Outlander-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F20%20Mitsubishi%20Outlander-01.png?alt=media&token=fa2b43d2-7d68-435d-83e8-a2f82ac928a6\"\n            },\n            {\n                \"nombre\": \"Mitsubishi Outlander-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F20%20Mitsubishi%20Outlander-02.png?alt=media&token=5cb00a91-4a47-495b-9bb1-dcc56a9d1b9f\"\n            },\n            {\n                \"nombre\": \"Mitsubishi Outlander-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F20%20Mitsubishi%20Outlander-03.png?alt=media&token=f0417ace-3aea-48f5-a08b-158d8d155981\"\n            },\n            {\n                \"nombre\": \"Mitsubishi Outlander-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F20%20Mitsubishi%20Outlander-04.png?alt=media&token=0fc8dc99-0353-4ef6-bf4d-d9163b6d1605\"\n            },\n            {\n                \"nombre\": \"Mitsubishi Outlander-05\",\n                \"url\": \"https://console.firebase.google.com/u/0/project/proyectofdhg1/storage/proyectofdhg1.appspot.com/files/~2Fautos2?hl=es-419\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 21,\n        \"nombre\": \"Tesla Model Y \",\n        \"descripcion\": \"El Model Y es un SUV de tamaño medio totalmente eléctrico con una protección incomparable y un espacio de almacenamiento versátil.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Tesla Model Y-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F21%20Tesla%20Model%203Y-01.png?alt=media&token=f7171884-3f99-416f-9ff3-80ece9196975\"\n            },\n            {\n                \"nombre\": \"Tesla Model Y-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F21%20Tesla%20Model%203Y-02.png?alt=media&token=a6b19de6-8f2e-459d-bcff-be614e0ee0fb\"\n            },\n            {\n                \"nombre\": \"Tesla Model Y-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F21%20Tesla%20Model%203Y-03.png?alt=media&token=db275fa0-48bc-4a5b-8ee0-a26ae7ace195\"\n            },\n            {\n                \"nombre\": \"Tesla Model Y-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F21%20Tesla%20Model%203Y-04.png?alt=media&token=171f66c3-ce68-498e-824d-37b21236813f\"\n            },\n            {\n                \"nombre\": \"Tesla Model Y-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F21%20Tesla%20Model%203Y-05.png?alt=media&token=65fd5c55-3683-4ba7-97b6-70ddd50f9ece\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 22,\n        \"nombre\": \"Tesla Model S \",\n        \"descripcion\": \"El Tesla Model S es un liftback eléctrico de alta gama. La arquitectura de batería actualizada para todos los modelos del Model S permite realizar recorridos consecutivos sin que el rendimiento se vea afectado.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Tesla Model S-01\",\n                \"url\": \"https://console.firebase.google.com/u/0/project/proyectofdhg1/storage/proyectofdhg1.appspot.com/files/~2Fautos3?hl=es-419\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-02.png?alt=media&token=c1a9bafa-8fae-4dc0-b19b-317ab109129b\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-03.png?alt=media&token=a1e5ace4-f7f7-4aa6-a88d-f9491267df7e\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-04.png?alt=media&token=cba035d0-5a11-4735-834e-c9668aa99ed8\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-05\",\n                \"url\": \"https://console.firebase.google.com/u/0/project/proyectofdhg1/storage/proyectofdhg1.appspot.com/files/~2Fautos3?hl=es-419\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 23,\n        \"nombre\": \"Tesla Model X\",\n        \"descripcion\": \"Las plataformas del Model X aúnan las tecnologías de tren motriz y batería para ofrecer unos niveles de rendimiento, autonomía y eficiencia insuperables. El nuevo módulo rediseñado y la arquitectura térmica permiten una carga más rápida, proporcionándole más potencia y resistencia en todas las condiciones.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Tesla Model X-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F23%20Tesla%20Model%203X-01.png?alt=media&token=842968c5-b893-432f-ba0d-24a96ab6b7c7\"\n            },\n            {\n                \"nombre\": \"Tesla Model X-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F23%20Tesla%20Model%203X-02.png?alt=media&token=77f987d9-ba65-4e55-91f4-613f02b4e27c\"\n            },\n            {\n                \"nombre\": \"Tesla Model X-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F23%20Tesla%20Model%203X-03.png?alt=media&token=9dbbc27d-140d-4001-8b32-44b08c69e1f6\"\n            },\n            {\n                \"nombre\": \"Tesla Model X-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F23%20Tesla%20Model%203X-04.png?alt=media&token=118bbe6e-41c7-4364-8836-43e769375c59\"\n            },\n            {\n                \"nombre\": \"Tesla Model X-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F23%20Tesla%20Model%203X-05.png?alt=media&token=ba1daf6b-c840-4f97-a886-487772320415\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 24,\n        \"nombre\": \"Nissan Leaf\",\n        \"descripcion\": \"El Nissan Leaf es un automóvil eléctrico tipo hatchback lanzado en Estados Unidos y Japón. automóvil familiar, líder, amigable con el ambiente y asequible​\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Nissan Leaf-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-01.png?alt=media&token=5fcf0b9f-b17d-40dd-9057-daf00ec4a961\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-02.png?alt=media&token=e4752c6f-d8ba-43f0-95e7-a2155b0629bc\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-03.png?alt=media&token=e5f7a408-e7ab-4e4c-b72d-d775e364d95f\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-04.png?alt=media&token=39a9c724-55d2-4478-83e2-02398ca05e97\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-05.jpg?alt=media&token=ed066e80-73f9-4afb-aded-d7d741a9aa19\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 25,\n        \"nombre\": \"Volkswagen ID4\",\n        \"descripcion\": \"El conjunto mecánico consta de un motor eléctrico con 150 kW (201 hp) de potencia y 310 Nm de torque inmediato, alimentado por una batería Gross con 82 kWh de capacidad (77 kWh netos). Así, se garantiza una autonomía de 531 kms por carga completa, según ciclo WLTP.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"VolgsWagen ID4-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F25%20VW%20ID4-01.png?alt=media&token=baaa9227-db53-44c5-9dc8-f773fb045fed\"\n            },\n            {\n                \"nombre\": \"VolgsWagen ID4-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F25%20VW%20ID4-02.png?alt=media&token=8c14ef76-2af0-4c88-8a9f-9e840e1b36d4\"\n            },\n            {\n                \"nombre\": \"VolgsWagen ID4-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F25%20VW%20ID4-03.png?alt=media&token=443ed971-b3d0-48d5-8cfd-f505c1a191af\"\n            },\n            {\n                \"nombre\": \"VolgsWagen ID4-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F25%20VW%20ID4-04.png?alt=media&token=99d25b1d-d26f-43a2-8b9a-d8c99fc6716d\"\n            },\n            {\n                \"nombre\": \"VolgsWagen ID4-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F25%20VW%20ID4-05.png?alt=media&token=d9143b1c-a13a-473d-a131-d87517da504b\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 26,\n        \"nombre\": \"Renault Trafic\",\n        \"descripcion\": \"soluciones originales para conseguir que el espacio de carga sea más práctico que nunca. Utiliza una amplia gama de recursos para proponerle una de las mejores capacidades de carga del mercado. Esta equipada con un motor que ofrece 170 caballos de potencia y 380 Nm de torque.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Renault Trafic-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-04.png?alt=media&token=c381b7db-b906-48f9-bb4d-8f271f1dbd8c\"\n            },\n            {\n                \"nombre\": \"Renault Trafic-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-02.png?alt=media&token=95784930-c62f-4352-b040-418b35b58de3\"\n            },\n            {\n                \"nombre\": \"Renault Trafic-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-03.png?alt=media&token=08d94c46-8f43-4b2c-82ab-e14e197bec52\"\n            },\n            {\n                \"nombre\": \"Renault Trafic-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-01.png?alt=media&token=204d438d-1504-4d2d-9e37-0a438f0bf9b8\"\n            },\n            {\n                \"nombre\": \"Renault Trafic-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F26%20Renault%20Trafic-05.png?alt=media&token=1c29c64d-93ff-4c60-bd02-3b6af6244c11\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 27,\n        \"nombre\": \"Mercedes Benz Sprinter\",\n        \"descripcion\": \"Estas vans Mercedes-Benz se destacan por su versatilidad, ofreciendo modelos adaptados a cada tipo de negocio, ya sea carga, ambulancias, aplicaciones especiales o transporte de pasajeros. Con una amplia gama de variantes y equipamientos personalizables, satisfacemos las necesidades de nuestros clientes de manera precisa.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-01.png?alt=media&token=417c7d74-b3a4-4b25-a6ce-12f5f8b297c4\"\n            },\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-02.png?alt=media&token=24b6de9d-4df3-4ad2-be51-700e9cd2dd43\"\n            },\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-03.png?alt=media&token=cb82007e-29c2-4468-896f-7bc333c860c6\"\n            },\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-04.png?alt=media&token=6b8ab179-7b4f-4ab5-9ba9-0dd759d28475\"\n            },\n            {\n                \"nombre\": \"Mercedes Benz Sprinter-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F27%20Mercedes%20Benz%20Sprinter-05.png?alt=media&token=0be486de-a086-4c1b-8a84-5de7889bd5b6\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 28,\n        \"nombre\": \"Peugeot Expert\",\n        \"descripcion\": \"Cuando conozcas como trabajan y cuanto te ayudan, el resto de utilitarios parecerán principiantes.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Peugeot Expert-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-01.png?alt=media&token=558bde3a-63e5-4c21-8b37-f209dd2f1492\"\n            },\n            {\n                \"nombre\": \"Peugeot Expert-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-02.png?alt=media&token=d4cf7167-6151-4b5d-aa08-5fc83f56f4a1\"\n            },\n            {\n                \"nombre\": \"Peugeot Expert-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-03.png?alt=media&token=71dd3bff-cf2c-4cf9-b3de-4347fd2d0c1b\"\n            },\n            {\n                \"nombre\": \"Peugeot Expert-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-04.png?alt=media&token=d02572cd-45ac-4758-af89-a4c1b7819105\"\n            },\n            {\n                \"nombre\": \"Peugeot Expert-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F28%20Peugeot%20Expert-05.png?alt=media&token=f2b985a2-591e-454d-aff1-6481311e49ea\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 29,\n        \"nombre\": \"DFSK C37X9 \",\n        \"descripcion\": \"Pensando en una experiencia segura con espacio y conford para todos.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"DFSK C37X9-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-01.png?alt=media&token=4e3badfe-ebc0-4ad0-8468-054b9edb63b1\"\n            },\n            {\n                \"nombre\": \"DFSK C37X9-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-02.png?alt=media&token=5023a3f9-d859-4f0f-9992-67af45dc9800\"\n            },\n            {\n                \"nombre\": \"DFSK C37X9-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-03.png?alt=media&token=193abb18-d8e0-4a99-b9f0-98f0286db860\"\n            },\n            {\n                \"nombre\": \"DFSK C37X9-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-04.png?alt=media&token=ad0f0610-829e-4738-bddb-9fa8b06dbd23\"\n            },\n            {\n                \"nombre\": \"DFSK C37X9-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F29%20DFSK%20C37X9-05.png?alt=media&token=0ea9fed6-2b49-4607-8aa5-5394f4b80d84\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 30,\n        \"nombre\": \"Renault Kangoo\",\n        \"descripcion\": \"La nueva Renault KANGOO será la herramienta de trabajo más versátil y moderna que aportará al desarrollo de tus proyectos. Con avanzada tecnología en seguridad, nuevo motor, diseño amplio y equipamiento útil, será el compañero ideal para extender los horizontes de tu empresa.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Renault Kangoo-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-01.png?alt=media&token=b13041de-0482-47e5-bd00-d8044e7a1e9a\"\n            },\n            {\n                \"nombre\": \"Renault Kangoo-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-02.png?alt=media&token=de80a8c3-ec5d-4dbe-972a-dab71494cd01\"\n            },\n            {\n                \"nombre\": \"Renault Kangoo-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-03.png?alt=media&token=337c0ec5-07d8-4435-a701-57178b02b970\"\n            },\n            {\n                \"nombre\": \"Renault Kangoo-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-04.png?alt=media&token=d24419a0-3904-466a-9b6e-0380dc43d52e\"\n            },\n            {\n                \"nombre\": \"Renault Kangoo-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F30%20Renault%20Kangoo-05.png?alt=media&token=76c8a77a-4617-4dbb-b7bb-8813e6dd2036\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 3,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 32,\n        \"nombre\": \"TRACTOCAMION de prueba\",\n        \"descripcion\": \"Este es un vehículo de PRUEBA integración\",\n        \"imagenes\": [],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    }\n]"
+						},
+						{
+							"name": "consulta y categoria",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"consulta\": \"Toyota\",\r\n    \"categoria\": [2]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/vehiculos/busqueda",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"vehiculos",
+										"busqueda"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"id\": 3,\r\n        \"nombre\": \"Toyota RAV4\",\r\n        \"descripcion\": \"Vehiculo Hibrido. Déjate guiar por tu espíritu aventurero y aprovecha cada oportunidad de salir a la carretera\",\r\n        \"imagenes\": [\r\n            {\r\n                \"nombre\": \"Toyota RAV4-01\",\r\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-01.png?alt=media&token=ceac678d-6887-4609-bbd2-a03e67e296c0\"\r\n            },\r\n            {\r\n                \"nombre\": \"Toyota RAV4-02\",\r\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-02.png?alt=media&token=a7d63d83-6d97-4f6a-a724-b8af5cd20707\"\r\n            },\r\n            {\r\n                \"nombre\": \"Toyota RAV4-03\",\r\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-03.png?alt=media&token=845ebcd3-fc99-4f03-9f7e-5078260f364d\"\r\n            },\r\n            {\r\n                \"nombre\": \"Toyota RAV4-04\",\r\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-04.png?alt=media&token=9d5e1339-1b85-47dc-ba00-805168eabfb5\"\r\n            },\r\n            {\r\n                \"nombre\": \"Toyota RAV4-05\",\r\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F3%20Toyota%20RAV4%20Hybrid-05.png?alt=media&token=e7891518-62f8-4ff9-8602-4d0a64757f38\"\r\n            }\r\n        ],\r\n        \"categoria\": {\r\n            \"id\": 2,\r\n            \"titulo\": null,\r\n            \"descripcion\": null,\r\n            \"urlImagen\": null\r\n        }\r\n    }\r\n]"
+						},
+						{
+							"name": "consulta categoria fecha",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"consulta\":\"Hyunda\",\r\n    \"categoria\": [1,2,3],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/vehiculos/busqueda",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"vehiculos",
+										"busqueda"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 12,\n        \"nombre\": \"hyundai Sonata\",\n        \"descripcion\": \"El tren motriz avanzado del SONATA Hybrid le brinda una autonomía combinada de 192 hp con mucho torque en el instante en que presione el acelerador, gracias a su motor eléctrico de 39 kW. Sin mencionar una transmisión automática de 6 velocidades con mandos y suspensión trasera independiente multienlace, para brindarle más emoción aún\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Hyundai Sonata-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-01.png?alt=media&token=78978839-cf75-47e4-8734-78785e395152\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-02.png?alt=media&token=044a0e6b-48c3-4660-a440-ee25874833b6\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-03.png?alt=media&token=c975ca4d-9c32-43f2-b46e-44fbdec4254a\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-04.png?alt=media&token=901d8c4c-dfed-45b6-94ff-ebe7aea77c0b\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-05.png?alt=media&token=a574cc54-927b-4683-8e2f-d8f410dce837\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 9,\n        \"nombre\": \"Hyundai Kona\",\n        \"descripcion\": \"Con su nuevo aspecto futurista, una presencia en carretera más dinámica y mayor espacio para tus aventuras, este atrevido SUV totalmente eléctrico te ofrece tecnología inteligente de vanguardia y la mejor autonomía con hasta 683 km en ciudad para una que disfrutes de conducir un coche eléctrico sin restricciones\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Hyundai Kona-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-01.png?alt=media&token=f806b56f-c3a0-43fe-8ef5-b6c0dacca34e\"\n            },\n            {\n                \"nombre\": \"Hyundai Kona-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-02.png?alt=media&token=3041e240-d1ed-4c96-bf8c-ee5b2d3886f3\"\n            },\n            {\n                \"nombre\": \"Hyundai Kona-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-03.png?alt=media&token=b81ca54f-5d54-4b9b-81a4-782ddb94451e\"\n            },\n            {\n                \"nombre\": \"Hyundai Kona-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-04.png?alt=media&token=566f398a-c068-42d9-82c4-6b37b00b854f\"\n            },\n            {\n                \"nombre\": \"Hyundai Kona-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F9%20Hyundai%20Kona-05.png?alt=media&token=ca75cacb-2049-44dc-8161-e757b57cec61\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 10,\n        \"nombre\": \"Hyundai Ioniq\",\n        \"descripcion\": \"La SUV KONA hibrida, que utiliza energia eléctrica para llegar más lejos con menos consumo de combustible. Gracias a su innovador tren de potencia híbrido, la nueva Hyundai KONA combina un aspecto irresistiblemente atractivo con una eficiencia de combustible excepcional. Todo sin tener que cargar una batería o cambiar tus hábitos actuales de conducción.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Hyundai Ionic-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-01.png?alt=media&token=58daea2e-c129-4722-bfbd-9fa5c0084273\"\n            },\n            {\n                \"nombre\": \"Hyundai Ionic-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-02.png?alt=media&token=f6b43730-a38b-4872-825d-da954ec87d21\"\n            },\n            {\n                \"nombre\": \"Hyundai Ionic-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-03.png?alt=media&token=aafe868c-72ea-4b87-a997-49976adae3bc\"\n            },\n            {\n                \"nombre\": \"Hyundai Ionic-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-04.png?alt=media&token=cdbbfa73-df0d-4a46-b61f-44cda29c5e6a\"\n            },\n            {\n                \"nombre\": \"Hyundai Ionic-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F10%20Hyundai%20Ionic-05.png?alt=media&token=b45a8d9f-e6df-4837-afb2-34e80b57f77a\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 2,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    }\n]"
+						},
+						{
+							"name": "categoria,fechas sin consulta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoria\": [1],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/vehiculos/busqueda",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"vehiculos",
+										"busqueda"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Toyota Prius\",\n        \"descripcion\": \"Este auto electrico con diseño vanguardista y cautivador inspira tu manejo, con tecnología avanzada, eficiencia de combustible y la confiabilidad que ya conoces\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Toyota Prius-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-01.png?alt=media&token=2b501b5d-95ad-455d-b915-11a890a283f1\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-02.png?alt=media&token=8e48874b-52aa-4c36-8877-3bbed45595ee\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-03.png?alt=media&token=b4a82602-44ce-4861-9e34-825321e721bf\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-04.png?alt=media&token=32fd316e-27c7-4b43-af3c-04e8c51c49ad\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-05.png?alt=media&token=409f76d4-f38e-4ab6-bc3d-b7cd05c582b7\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 4,\n        \"nombre\": \"Honda Accord\",\n        \"descripcion\": \"Vehiculo Hibrido. Equilibrio ideal entre poder y refinamiento. los modelos híbridos te brindan tecnología premium y reciben una clasificación de 46 mpg en ciudad/41 en carretera.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Honda Accord-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-01.png?alt=media&token=6c6b4115-4d72-4557-a9e2-2108ed4c5623\"\n            },\n            {\n                \"nombre\": \"Honda Accord-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-02.png?alt=media&token=0608bad0-c28a-4fe3-bca2-0b8db32716ef\"\n            },\n            {\n                \"nombre\": \"Honda Accord-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-03.png?alt=media&token=55269603-3c14-461d-ba33-d5b499ab703b\"\n            },\n            {\n                \"nombre\": \"Honda Accord-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-04.png?alt=media&token=fd2a7d6f-45c5-4abc-b5cd-9be6a79ef549\"\n            },\n            {\n                \"nombre\": \"Honda Accord-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-05.png?alt=media&token=ca45946e-c1bd-42d2-ba03-90fe3ffdab2b\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 11,\n        \"nombre\": \"Chevrolet Malibu\",\n        \"descripcion\": \"El motor estándar del Malibu es un motor Ecotec de 2,4 litros y cuatro cilindros con consumo eficiente de combustible, 169 caballos de fuerza (126 kW) y una economía de combustible estimada por la EPA de 22 mpg en ciudad y 33 mpg en carretera.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Chevrolet Malibu-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-01.png?alt=media&token=5d0a9e8d-558d-4b6f-81e1-466f24f872e5\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-02.png?alt=media&token=30a96374-49ba-4c9f-ab7c-0dc8d1e536ac\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-03.png?alt=media&token=ce2d9653-7f2d-4959-a704-498934e0d905\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-04.png?alt=media&token=5436902d-4335-47c9-990b-e4a936da8572\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-05.png?alt=media&token=4f017eb9-d20a-49e3-948b-df0b5c6e51b1\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 12,\n        \"nombre\": \"hyundai Sonata\",\n        \"descripcion\": \"El tren motriz avanzado del SONATA Hybrid le brinda una autonomía combinada de 192 hp con mucho torque en el instante en que presione el acelerador, gracias a su motor eléctrico de 39 kW. Sin mencionar una transmisión automática de 6 velocidades con mandos y suspensión trasera independiente multienlace, para brindarle más emoción aún\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Hyundai Sonata-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-01.png?alt=media&token=78978839-cf75-47e4-8734-78785e395152\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-02.png?alt=media&token=044a0e6b-48c3-4660-a440-ee25874833b6\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-03.png?alt=media&token=c975ca4d-9c32-43f2-b46e-44fbdec4254a\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-04.png?alt=media&token=901d8c4c-dfed-45b6-94ff-ebe7aea77c0b\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-05.png?alt=media&token=a574cc54-927b-4683-8e2f-d8f410dce837\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 16,\n        \"nombre\": \"BMW X1\",\n        \"descripcion\": \" tiene como base un motor a gasolina TwinPower Turbo de 2.0 litros, cuatro cilindros, 184 hp y 300 Nm de torque, unido a un motor eléctrico de 83 hp y 265 Nm. Con un enchufe de 220V se realiza la carga directamente a la corriente, pero también permite regenerar energía mediante el frenado, sistema muy eficiente según el manejoalimentado por una batería de 10,79 kWh. Combinados, logran 252 hp y 420 Nm de torque final, acoplados a una caja automática de ocho velocidades.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"BMW X1-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-01.png?alt=media&token=2768d274-b9cf-4423-ac83-ac7bbf9c3dcd\"\n            },\n            {\n                \"nombre\": \"BMW X1-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-02.png?alt=media&token=4b676eee-fb72-4cdb-8c38-51b29982f3db\"\n            },\n            {\n                \"nombre\": \"BMW X1-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-03.png?alt=media&token=c81ce746-4a8c-488f-8429-5a65aaf4d714\"\n            },\n            {\n                \"nombre\": \"BMW X1-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-04.png?alt=media&token=76123e23-2a1b-4702-a43b-6fd0ba91fb12\"\n            },\n            {\n                \"nombre\": \"BMW X1-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-05.png?alt=media&token=d354a033-f866-41a0-9863-8dd481e69240\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 22,\n        \"nombre\": \"Tesla Model S \",\n        \"descripcion\": \"El Tesla Model S es un liftback eléctrico de alta gama. La arquitectura de batería actualizada para todos los modelos del Model S permite realizar recorridos consecutivos sin que el rendimiento se vea afectado.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Tesla Model S-01\",\n                \"url\": \"https://console.firebase.google.com/u/0/project/proyectofdhg1/storage/proyectofdhg1.appspot.com/files/~2Fautos3?hl=es-419\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-02.png?alt=media&token=c1a9bafa-8fae-4dc0-b19b-317ab109129b\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-03.png?alt=media&token=a1e5ace4-f7f7-4aa6-a88d-f9491267df7e\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-04.png?alt=media&token=cba035d0-5a11-4735-834e-c9668aa99ed8\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-05\",\n                \"url\": \"https://console.firebase.google.com/u/0/project/proyectofdhg1/storage/proyectofdhg1.appspot.com/files/~2Fautos3?hl=es-419\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 24,\n        \"nombre\": \"Nissan Leaf\",\n        \"descripcion\": \"El Nissan Leaf es un automóvil eléctrico tipo hatchback lanzado en Estados Unidos y Japón. automóvil familiar, líder, amigable con el ambiente y asequible​\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Nissan Leaf-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-01.png?alt=media&token=5fcf0b9f-b17d-40dd-9057-daf00ec4a961\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-02.png?alt=media&token=e4752c6f-d8ba-43f0-95e7-a2155b0629bc\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-03.png?alt=media&token=e5f7a408-e7ab-4e4c-b72d-d775e364d95f\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-04.png?alt=media&token=39a9c724-55d2-4478-83e2-02398ca05e97\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-05.jpg?alt=media&token=ed066e80-73f9-4afb-aded-d7d741a9aa19\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 32,\n        \"nombre\": \"TRACTOCAMION de prueba\",\n        \"descripcion\": \"Este es un vehículo de PRUEBA integración\",\n        \"imagenes\": [],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    }\n]"
+						},
+						{
+							"name": "consulta,fechas sin categoria",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoria\": [1],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/vehiculos/busqueda",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"vehiculos",
+										"busqueda"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Toyota Prius\",\n        \"descripcion\": \"Este auto electrico con diseño vanguardista y cautivador inspira tu manejo, con tecnología avanzada, eficiencia de combustible y la confiabilidad que ya conoces\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Toyota Prius-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-01.png?alt=media&token=2b501b5d-95ad-455d-b915-11a890a283f1\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-02.png?alt=media&token=8e48874b-52aa-4c36-8877-3bbed45595ee\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-03.png?alt=media&token=b4a82602-44ce-4861-9e34-825321e721bf\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-04.png?alt=media&token=32fd316e-27c7-4b43-af3c-04e8c51c49ad\"\n            },\n            {\n                \"nombre\": \"Toyota Prius-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F1%20Toyota%20Prius-05.png?alt=media&token=409f76d4-f38e-4ab6-bc3d-b7cd05c582b7\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 4,\n        \"nombre\": \"Honda Accord\",\n        \"descripcion\": \"Vehiculo Hibrido. Equilibrio ideal entre poder y refinamiento. los modelos híbridos te brindan tecnología premium y reciben una clasificación de 46 mpg en ciudad/41 en carretera.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Honda Accord-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-01.png?alt=media&token=6c6b4115-4d72-4557-a9e2-2108ed4c5623\"\n            },\n            {\n                \"nombre\": \"Honda Accord-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-02.png?alt=media&token=0608bad0-c28a-4fe3-bca2-0b8db32716ef\"\n            },\n            {\n                \"nombre\": \"Honda Accord-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-03.png?alt=media&token=55269603-3c14-461d-ba33-d5b499ab703b\"\n            },\n            {\n                \"nombre\": \"Honda Accord-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-04.png?alt=media&token=fd2a7d6f-45c5-4abc-b5cd-9be6a79ef549\"\n            },\n            {\n                \"nombre\": \"Honda Accord-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos%2F4%20Honda%20Accord%20Hybrid-05.png?alt=media&token=ca45946e-c1bd-42d2-ba03-90fe3ffdab2b\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 11,\n        \"nombre\": \"Chevrolet Malibu\",\n        \"descripcion\": \"El motor estándar del Malibu es un motor Ecotec de 2,4 litros y cuatro cilindros con consumo eficiente de combustible, 169 caballos de fuerza (126 kW) y una economía de combustible estimada por la EPA de 22 mpg en ciudad y 33 mpg en carretera.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Chevrolet Malibu-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-01.png?alt=media&token=5d0a9e8d-558d-4b6f-81e1-466f24f872e5\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-02.png?alt=media&token=30a96374-49ba-4c9f-ab7c-0dc8d1e536ac\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-03.png?alt=media&token=ce2d9653-7f2d-4959-a704-498934e0d905\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-04.png?alt=media&token=5436902d-4335-47c9-990b-e4a936da8572\"\n            },\n            {\n                \"nombre\": \"Chevrolet Malibu-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F11%20Chevrolet%20Malibu-05.png?alt=media&token=4f017eb9-d20a-49e3-948b-df0b5c6e51b1\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 12,\n        \"nombre\": \"hyundai Sonata\",\n        \"descripcion\": \"El tren motriz avanzado del SONATA Hybrid le brinda una autonomía combinada de 192 hp con mucho torque en el instante en que presione el acelerador, gracias a su motor eléctrico de 39 kW. Sin mencionar una transmisión automática de 6 velocidades con mandos y suspensión trasera independiente multienlace, para brindarle más emoción aún\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Hyundai Sonata-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-01.png?alt=media&token=78978839-cf75-47e4-8734-78785e395152\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-02.png?alt=media&token=044a0e6b-48c3-4660-a440-ee25874833b6\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-03.png?alt=media&token=c975ca4d-9c32-43f2-b46e-44fbdec4254a\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-04.png?alt=media&token=901d8c4c-dfed-45b6-94ff-ebe7aea77c0b\"\n            },\n            {\n                \"nombre\": \"Hyundai Sonata-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F12%20Hyundai%20Sonata-05.png?alt=media&token=a574cc54-927b-4683-8e2f-d8f410dce837\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 16,\n        \"nombre\": \"BMW X1\",\n        \"descripcion\": \" tiene como base un motor a gasolina TwinPower Turbo de 2.0 litros, cuatro cilindros, 184 hp y 300 Nm de torque, unido a un motor eléctrico de 83 hp y 265 Nm. Con un enchufe de 220V se realiza la carga directamente a la corriente, pero también permite regenerar energía mediante el frenado, sistema muy eficiente según el manejoalimentado por una batería de 10,79 kWh. Combinados, logran 252 hp y 420 Nm de torque final, acoplados a una caja automática de ocho velocidades.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"BMW X1-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-01.png?alt=media&token=2768d274-b9cf-4423-ac83-ac7bbf9c3dcd\"\n            },\n            {\n                \"nombre\": \"BMW X1-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-02.png?alt=media&token=4b676eee-fb72-4cdb-8c38-51b29982f3db\"\n            },\n            {\n                \"nombre\": \"BMW X1-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-03.png?alt=media&token=c81ce746-4a8c-488f-8429-5a65aaf4d714\"\n            },\n            {\n                \"nombre\": \"BMW X1-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-04.png?alt=media&token=76123e23-2a1b-4702-a43b-6fd0ba91fb12\"\n            },\n            {\n                \"nombre\": \"BMW X1-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos2%2F16%20BMW%20X1-05.png?alt=media&token=d354a033-f866-41a0-9863-8dd481e69240\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 22,\n        \"nombre\": \"Tesla Model S \",\n        \"descripcion\": \"El Tesla Model S es un liftback eléctrico de alta gama. La arquitectura de batería actualizada para todos los modelos del Model S permite realizar recorridos consecutivos sin que el rendimiento se vea afectado.\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Tesla Model S-01\",\n                \"url\": \"https://console.firebase.google.com/u/0/project/proyectofdhg1/storage/proyectofdhg1.appspot.com/files/~2Fautos3?hl=es-419\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-02.png?alt=media&token=c1a9bafa-8fae-4dc0-b19b-317ab109129b\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-03.png?alt=media&token=a1e5ace4-f7f7-4aa6-a88d-f9491267df7e\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F22%20Tesla%20Model%203S-04.png?alt=media&token=cba035d0-5a11-4735-834e-c9668aa99ed8\"\n            },\n            {\n                \"nombre\": \"Tesla Model S-05\",\n                \"url\": \"https://console.firebase.google.com/u/0/project/proyectofdhg1/storage/proyectofdhg1.appspot.com/files/~2Fautos3?hl=es-419\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 24,\n        \"nombre\": \"Nissan Leaf\",\n        \"descripcion\": \"El Nissan Leaf es un automóvil eléctrico tipo hatchback lanzado en Estados Unidos y Japón. automóvil familiar, líder, amigable con el ambiente y asequible​\",\n        \"imagenes\": [\n            {\n                \"nombre\": \"Nissan Leaf-01\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-01.png?alt=media&token=5fcf0b9f-b17d-40dd-9057-daf00ec4a961\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-02\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-02.png?alt=media&token=e4752c6f-d8ba-43f0-95e7-a2155b0629bc\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-03\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-03.png?alt=media&token=e5f7a408-e7ab-4e4c-b72d-d775e364d95f\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-04\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-04.png?alt=media&token=39a9c724-55d2-4478-83e2-02398ca05e97\"\n            },\n            {\n                \"nombre\": \"Nissan Leaf-05\",\n                \"url\": \"https://firebasestorage.googleapis.com/v0/b/proyectofdhg1.appspot.com/o/autos3%2F24%20Nissan%20Leaf-05.jpg?alt=media&token=ed066e80-73f9-4afb-aded-d7d741a9aa19\"\n            }\n        ],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    },\n    {\n        \"id\": 32,\n        \"nombre\": \"TRACTOCAMION de prueba\",\n        \"descripcion\": \"Este es un vehículo de PRUEBA integración\",\n        \"imagenes\": [],\n        \"categoria\": {\n            \"id\": 1,\n            \"titulo\": null,\n            \"descripcion\": null,\n            \"urlImagen\": null\n        }\n    }\n]"
+						}
+					]
 				}
 			],
 			"description": "The `/me` endpoints let you manage information about the authenticated user."
@@ -338,7 +713,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -348,22 +724,27 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzEwMzc5NzcyLCJleHAiOjE3MTA0NjYxNzJ9.U6Re7ev2rS8skr4uUQZgalQ2lvqLRN3H9VcZCiTAVXqK2Wr65ifRC_rgWMe9Cn_c1JzSh1qOu1T_VY6VM8A4-g",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"{{collectionName}}\",\n            \"schema\": \"{{collectionSchemaUrl}}\"\n        },\n        \"item\": [\n            {\n                \"request\": {}\n            }\n        ]\n    }\n}"
+							"raw": "{\n  \"nombre\": \"Nombre de la imagen\",\n  \"url\": \"http://ejemplo.com/imagen.jpg\",\n  \"vehiculo_id\": 1\n}\n"
 						},
 						"url": {
-							"raw": "https://api.getpostman.com/collections",
-							"protocol": "https",
+							"raw": "localhost:8081/imagenes/agregar",
 							"host": [
-								"api",
-								"getpostman",
-								"com"
+								"localhost"
 							],
+							"port": "8081",
 							"path": [
-								"collections"
+								"imagenes",
+								"agregar"
 							],
 							"query": [
 								{
@@ -664,7 +1045,8 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJyaXRhYmFsbGVzQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MTAzNzUzNDUsImV4cCI6MTcxMDQ2MTc0NX0.jyJxWu_1M2ZA2POd2U7W9vsiNajxpVHJF2rCR7uhzEBcLqw_xpEJdHLlNhA3WCtPOoVTeceRvDMA8Jmw75VOcQ",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -937,7 +1319,8 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzEwMzc2Nzg4LCJleHAiOjE3MTA0NjMxODh9.evS4FKQyShZGLAiRHKQReu4ospMCR0EtLXLEUHKidrwDuUEzJy3p3Azt-DbIie8Kf2Ws44UbuKFexZjHsoRC2w",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -1221,19 +1604,112 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "registro usuarios",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"nombre usuario\",\r\n    \"apellido\":\"apellido\",\r\n    \"correoElectronico\":\"correo@ejemplo.com\",\r\n    \"contrasenia\":\"12dfsd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/usuarios/registro",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"usuarios",
+								"registro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar usuarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzEwNjkzMDA5LCJleHAiOjE3MTA3Nzk0MDl9.rvssdJDEiCo-b_qO6ghk5Vx7bCHBBkNw9IyiNWDTY-qp2O3xFUN25raNAyoM7F4kqFbCRIPDA4M8DZ-YSiXlfg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8081/usuarios/listar",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"usuarios",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gestion de permisos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiZW1haWwiOiJqb3NlLmppbWVuZXpAZXhhbXBsZS5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTA2OTYyODgsImV4cCI6MTcxMDc4MjY4OH0.gfB1nVuxEr_aVmfCHe_LH3xTgV_JAXRzJHZj62r_k_E3UACV2pH0-9-SDLzgUjlZPA1TeDTaSvVYkG9Y2IqFlA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"administrador\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/usuarios/permisos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"usuarios",
+								"permisos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
 		"type": "apikey",
 		"apikey": [
 			{
-				"key": "key",
-				"value": "X-API-Key",
+				"key": "value",
+				"value": "{{token}}",
 				"type": "string"
 			},
 			{
-				"key": "value",
-				"value": "{{token}}",
+				"key": "key",
+				"value": "X-API-Key",
 				"type": "string"
 			}
 		]
