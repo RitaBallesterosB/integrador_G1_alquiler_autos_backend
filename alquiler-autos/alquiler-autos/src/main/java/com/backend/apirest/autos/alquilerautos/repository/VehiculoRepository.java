@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface VehiculoRepository  extends JpaRepository <Vehiculo, Long> {
 
@@ -19,5 +20,7 @@ public interface VehiculoRepository  extends JpaRepository <Vehiculo, Long> {
 
     // Método para buscar vehículos reservados entre las fechas de entrega y devolución
     List<Vehiculo> findByReservas_FechaEntregaBetweenAndReservas_FechaDevolucionBetween(Date fechaInicioEntrega, Date fechaFinEntrega, Date fechaInicioDevolucion, Date fechaFinDevolucion);
+
+    Optional<Vehiculo> findById(Long id);
 
 }

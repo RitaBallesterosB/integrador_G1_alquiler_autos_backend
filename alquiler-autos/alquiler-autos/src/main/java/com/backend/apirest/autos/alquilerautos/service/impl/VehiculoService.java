@@ -12,6 +12,7 @@ import com.backend.apirest.autos.alquilerautos.entity.Categoria;
 import com.backend.apirest.autos.alquilerautos.entity.Reserva;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.entity.Imagen;
+import com.backend.apirest.autos.alquilerautos.exceptions.VehiculoException;
 import com.backend.apirest.autos.alquilerautos.repository.ImagenRepository;
 import com.backend.apirest.autos.alquilerautos.repository.VehiculoRepository;
 import com.backend.apirest.autos.alquilerautos.repository.CategoriaRepository;
@@ -111,19 +112,55 @@ public class VehiculoService implements IVehiculoService {
 
 
     //___________________________________________________________________________
+
     @Override
     public List<VehiculoSalidaDto> obtenerVehiculosAleatorios() {
         List<Vehiculo> vehiculos = vehiculoRepository.findAll();
         Collections.shuffle(vehiculos); // Mezcla aleatoriamente la lista de vehículos
-        int cantidadVehiculos = Math.min(4, vehiculos.size()); // Selecciona hasta 4 vehículos o la cantidad disponible
-        List<Vehiculo> vehiculosAleatorios = vehiculos.subList(0, cantidadVehiculos);
 
-        return vehiculosAleatorios.stream()
-                .map(vehiculo -> modelMapper.map(vehiculo, VehiculoSalidaDto.class))
-                .collect(Collectors.toList());
+        List<VehiculoSalidaDto> vehiculosAleatorios = new ArrayList<>();
+
+        for (Vehiculo vehiculo : vehiculos) {
+            // Seleccionar una sola imagen aleatoria del vehículo
+            List<ImagenSalidaDto> imagenesAleatorias = new ArrayList<>();
+            if (!vehiculo.getImagenes().isEmpty()) {
+                Random random = new Random();
+                int indiceAleatorio = random.nextInt(vehiculo.getImagenes().size());
+                ImagenSalidaDto imagenAleatoria = modelMapper.map(vehiculo.getImagenes().get(indiceAleatorio), ImagenSalidaDto.class);
+                imagenesAleatorias.add(imagenAleatoria);
+            }
+
+            // Crear un DTO de salida para el vehículo con solo una imagen
+            VehiculoSalidaDto vehiculoSalidaDto = modelMapper.map(vehiculo, VehiculoSalidaDto.class);
+            vehiculoSalidaDto.setImagenes(imagenesAleatorias);
+
+            // Agregar el vehículo con una sola imagen a la lista de vehículos aleatorios
+            vehiculosAleatorios.add(vehiculoSalidaDto);
+        }
+
+        return vehiculosAleatorios;
     }
 
 
+    //___________________________________________________________________________
+    @Override
+    public VehiculoSalidaDto obtenerVehiculoPorIdConImagenes(Long id) {
+        Optional<Vehiculo> vehiculoOptional = vehiculoRepository.findById(id);
+        if (vehiculoOptional.isPresent()) {
+            Vehiculo vehiculo = vehiculoOptional.get();
+            VehiculoSalidaDto vehiculoSalidaDto = modelMapper.map(vehiculo, VehiculoSalidaDto.class);
+            // Mapear las imágenes del vehículo al DTO de salida
+            List<ImagenSalidaDto> imagenes = vehiculo.getImagenes().stream()
+                    .map(imagen -> modelMapper.map(imagen, ImagenSalidaDto.class))
+                    .collect(Collectors.toList());
+            vehiculoSalidaDto.setImagenes(imagenes);
+            return vehiculoSalidaDto;
+        } else {
+            throw new VehiculoException("Vehículo no encontrado");
+        }
+    }
+
+    //___________________________________________________________________________
 
     @Override
     public List<VehiculoSalidaDto> listarVehiculos() {
@@ -132,7 +169,7 @@ public class VehiculoService implements IVehiculoService {
                 .map(this::entidadADtoSalida)
                 .collect(Collectors.toList());
     }
-
+    //___________________________________________________________________________
     @Override
     public void eliminarVehiculo(Long id) {
         // Verificar si el vehículo existe antes de intentar eliminarlo

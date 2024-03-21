@@ -23,7 +23,7 @@ public class Categoria {
     public Categoria() {
     }
 
-    public Categoria(Long id, String titulo, String descripcion, String urlImage, Set<Vehiculo> vehiculos) {
+    public Categoria(Long id, String titulo, String descripcion, String urlImagen, Set<Vehiculo> vehiculos) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;

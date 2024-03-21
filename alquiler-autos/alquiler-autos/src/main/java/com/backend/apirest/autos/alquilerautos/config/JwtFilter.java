@@ -23,7 +23,15 @@ public class JwtFilter extends GenericFilterBean {
     private final UserDetailsService userDetailsService;
 
     // Rutas que no requieren autenticación
-    private static final Set<String> UNAUTHENTICATED_PATHS = new HashSet<>(Arrays.asList("/login","/vehiculos/listar","/imagenes/galeria/**","/imagenes/galeria/**/vermas","/usuarios/registro","/vehiculos/busqueda"));
+    private static final Set<String> UNAUTHENTICATED_PATHS = new HashSet<>(Arrays.asList(
+                    "/login",
+                    "/vehiculos/listar",
+                    "/vehiculos/aleatorios",
+                    "/vehiculos/**",
+                    "/imagenes/galeria/**",
+                    "/imagenes/galeria/**/vermas",
+                    "/usuarios/registro",
+                    "vehiculos/busqueda"));
 
     public JwtFilter(JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService) {
         this.jwtTokenProvider = jwtTokenProvider;
@@ -35,11 +43,13 @@ public class JwtFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         String token = jwtTokenProvider.resolveToken(httpRequest);
 
-        // Verificar si la ruta no requiere autenticación
+         //Verificar si la ruta no requiere autenticación
         if (!requiresAuthentication(httpRequest.getRequestURI())) {
             filterChain.doFilter(req, res);
-            return;
+           return;
         }
+
+
 
         // Verificar si el token está presente en la solicitud
         if (token != null) {
@@ -67,7 +77,10 @@ public class JwtFilter extends GenericFilterBean {
         filterChain.doFilter(req, res);
     }
 
-    // Método para verificar si la ruta requiere autenticación
+
+    // Método para verificar si la ruta requiere autenticación MODIFICADO POR RITA
+
+
     // Método para verificar si la ruta requiere autenticación
     private boolean requiresAuthentication(String requestURI) {
         for (String path : UNAUTHENTICATED_PATHS) {
@@ -84,6 +97,10 @@ public class JwtFilter extends GenericFilterBean {
         }
         return true;
     }
+
+
+
+
 
 }
 

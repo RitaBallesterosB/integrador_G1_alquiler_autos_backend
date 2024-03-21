@@ -99,6 +99,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+
+		<!-- Dependencia para JavaMail para enviar correos -->
+
+
+		<!-- Dependencia para MailHog como servidor de correo similado  -->
+
+
 	</dependencies>
 
 		<build>
@@ -114,6 +121,8 @@
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>3.1.0</version>
 				</plugin>
+
+
 
 			</plugins>
 		</build>

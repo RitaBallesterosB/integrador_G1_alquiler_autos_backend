@@ -5,6 +5,7 @@ import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntr
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.exceptions.BadRequestException;
+import com.backend.apirest.autos.alquilerautos.exceptions.VehiculoException;
 import com.backend.apirest.autos.alquilerautos.service.IVehiculoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -69,6 +70,21 @@ public class VehiculoController {
     public ResponseEntity<List<VehiculoSalidaDto>> obtenerVehiculosAleatorios() {
         List<VehiculoSalidaDto> vehiculosAleatorios = vehiculoService.obtenerVehiculosAleatorios();
         return ResponseEntity.ok(vehiculosAleatorios);
+    }
+
+    //____________________________________________________________________________________
+    // Método para obtener un vehículo por su ID con imágenes
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerVehiculoPorIdConImagenes(@PathVariable Long id) {
+        try {
+            VehiculoSalidaDto vehiculo = vehiculoService.obtenerVehiculoPorIdConImagenes(id);
+            if (vehiculo == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vehículo no encontrado");
+            }
+            return ResponseEntity.ok(vehiculo);
+        } catch (VehiculoException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al obtener el vehículo");
+        }
     }
     //___________________________________________________________________________________
     @GetMapping("/listar")

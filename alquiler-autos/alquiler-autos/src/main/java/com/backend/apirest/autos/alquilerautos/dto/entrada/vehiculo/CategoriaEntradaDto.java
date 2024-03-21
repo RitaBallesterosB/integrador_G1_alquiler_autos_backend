@@ -57,7 +57,7 @@ public class CategoriaEntradaDto {
         return urlImagen;
     }
 
-    public void setUrlImagen(String urlImage) {
+    public void setUrlImagen(String urlImagen) {
         this.urlImagen = urlImagen;
     }
 }

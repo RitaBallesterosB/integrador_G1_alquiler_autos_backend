@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class UsuarioService implements IUsuarioService {
     public static final int MAX_LONGITUD_CONTRASENIA = 45;
@@ -182,6 +183,8 @@ public class UsuarioService implements IUsuarioService {
 
         return gestionusuarioSalidaDto;
     }
+
+
 }
 
 

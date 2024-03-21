@@ -22,6 +22,9 @@ public interface IVehiculoService {
     List<VehiculoSalidaDto> obtenerVehiculosAleatorios();
     //___________________________________________________________________________________________
 
+    VehiculoSalidaDto obtenerVehiculoPorIdConImagenes(Long id);
+
+    //___________________________________________________________________________________________
 
     List<VehiculoSalidaDto> listarVehiculos();
     //___________________________________________________________________________________________
