@@ -32,6 +32,8 @@ public interface IVehiculoService {
     void eliminarVehiculo(Long id);
 
     List<VehiculoSalidaDto> buscarVehiculos(String consulta, List<Long> categoria, String fechaEntrega, String fechaDevolucion) throws ParseException;
+
+    List<String> obtenerSugerencias(String consulta);
 }
 
 

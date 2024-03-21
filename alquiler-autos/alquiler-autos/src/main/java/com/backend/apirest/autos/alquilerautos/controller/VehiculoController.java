@@ -5,6 +5,7 @@ import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntr
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.exceptions.BadRequestException;
+import com.backend.apirest.autos.alquilerautos.exceptions.ResponseJson;
 import com.backend.apirest.autos.alquilerautos.exceptions.VehiculoException;
 import com.backend.apirest.autos.alquilerautos.service.IVehiculoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -146,5 +147,15 @@ public class VehiculoController {
        }
    }
 
+    @GetMapping("/busqueda/sugerencias")
+    public ResponseEntity<ResponseJson> obtenerSugerencias(@RequestBody Map<String, Object> requestBody) {
+        Map<String, Object> nameVehiculos = new HashMap<>();
+        String consulta = (String) requestBody.get("consulta");
+        List<String> nombresVehiculos = vehiculoService.obtenerSugerencias(consulta);
+        nameVehiculos.put("sugerencias", nombresVehiculos);
+        // Devuelve la respuesta con los datos del usuario
+        ResponseJson responseData = new ResponseJson(true, "Sugerencias encontradas", nameVehiculos);
+        return ResponseEntity.ok(responseData);
 
+    }
 }

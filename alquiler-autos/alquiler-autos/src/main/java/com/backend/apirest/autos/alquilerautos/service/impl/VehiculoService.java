@@ -48,9 +48,6 @@ public class VehiculoService implements IVehiculoService {
         configureMapping();
     }
 
-
-
-
     @Override
     public VehiculoSalidaDto agregarVehiculo(VehiculoEntradaDto vehiculoDto) {
         try {
@@ -190,6 +187,7 @@ public class VehiculoService implements IVehiculoService {
     }
 
 //---------------------------------------------------------------------------------------
+@Override
 public List<VehiculoSalidaDto> buscarVehiculos(String consulta, List<Long> categoria, String fechaEntrega, String fechaDevolucion) throws ParseException {
     List<VehiculoSalidaDto> vehiculosDTO = new ArrayList<>();
     List<Vehiculo> vehiculos = new ArrayList<>();
@@ -307,6 +305,17 @@ public List<VehiculoSalidaDto> buscarVehiculos(String consulta, List<Long> categ
         Date fecha = formatter.parse(fechaStr);
 
         return fecha;
+    }
+
+    // Método para obtener sugerencias basadas en la consulta ingresada
+    @Override
+    public List<String> obtenerSugerencias(String consulta) {
+        // Buscar vehículos cuyos nombres contengan la consulta
+        List<Vehiculo> vehiculos = vehiculoRepository.findByNombreContainingIgnoreCase(consulta);
+        // Extraer los nombres de los vehículos y devolverlos como sugerencias
+        return vehiculos.stream()
+                .map(Vehiculo::getNombre)
+                .collect(Collectors.toList());
     }
     private void configureMapping() {
         if (modelMapper.getTypeMap(CategoriaEntradaDto.class, Categoria.class) == null) {

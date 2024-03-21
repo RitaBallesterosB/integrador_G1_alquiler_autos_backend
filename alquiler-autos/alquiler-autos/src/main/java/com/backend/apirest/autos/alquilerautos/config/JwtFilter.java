@@ -31,7 +31,8 @@ public class JwtFilter extends GenericFilterBean {
                     "/imagenes/galeria/**",
                     "/imagenes/galeria/**/vermas",
                     "/usuarios/registro",
-                    "vehiculos/busqueda"));
+                    "/vehiculos/busqueda",
+                    "/vehiculos/busqueda/sugerencias"));
 
     public JwtFilter(JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService) {
         this.jwtTokenProvider = jwtTokenProvider;

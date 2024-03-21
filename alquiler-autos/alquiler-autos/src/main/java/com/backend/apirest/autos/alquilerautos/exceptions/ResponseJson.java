@@ -7,6 +7,7 @@ public class ResponseJson {
     private String message;
     private Map<String, Object> data;
 
+
     public ResponseJson(boolean success, String message, Map<String, Object> data) {
         this.success = success;
         this.message = message;
