@@ -27,7 +27,6 @@ public class JwtFilter extends GenericFilterBean {
                     "/login",
                     "/vehiculos/listar",
                     "/vehiculos/aleatorios",
-                    "/vehiculos/**",
                     "/imagenes/galeria/**",
                     "/imagenes/galeria/**/vermas",
                     "/usuarios/registro",
@@ -43,7 +42,7 @@ public class JwtFilter extends GenericFilterBean {
             throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         String token = jwtTokenProvider.resolveToken(httpRequest);
-
+        System.out.println("dofilter "+requiresAuthentication(httpRequest.getRequestURI()));
          //Verificar si la ruta no requiere autenticación
         if (!requiresAuthentication(httpRequest.getRequestURI())) {
             filterChain.doFilter(req, res);
@@ -55,8 +54,10 @@ public class JwtFilter extends GenericFilterBean {
         // Verificar si el token está presente en la solicitud
         if (token != null) {
             try {
+                System.out.println("presente"+jwtTokenProvider.validateToken(token));
                 if (jwtTokenProvider.validateToken(token)) {
                     Authentication auth = jwtTokenProvider.getAuthentication(token, userDetailsService);
+                    System.out.println("auth"+auth);
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }
             } catch (JwtAuthenticationException e) {
@@ -64,6 +65,7 @@ public class JwtFilter extends GenericFilterBean {
                 SecurityContextHolder.clearContext();
                 HttpServletResponse httpResponse = (HttpServletResponse) res;
                 httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "JWT token is expired or invalid");
+                System.out.println(":(");
                 return;
             }
         } else {

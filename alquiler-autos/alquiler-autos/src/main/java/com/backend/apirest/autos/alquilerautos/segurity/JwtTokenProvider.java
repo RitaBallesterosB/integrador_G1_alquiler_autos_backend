@@ -35,6 +35,7 @@ public class JwtTokenProvider {
 
     public Authentication getAuthentication(String token, UserDetailsService userDetailsService) {
         String username = getUsername(token);
+        System.out.println("username"+username);
         UserDetails userDetails = userDetailsService.loadUserByUsername(username); // Carga el usuario por su correo electrónico
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
@@ -56,25 +57,33 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String authToken) {
         try {
+            System.out.println("vvv"+Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken));
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException ex) {
             // handle JWT signature exception
+            ex.printStackTrace();
         } catch (MalformedJwtException ex) {
             // handle invalid JWT token
+            ex.printStackTrace();
         } catch (ExpiredJwtException ex) {
             // handle expired JWT token
+            ex.printStackTrace();
         } catch (UnsupportedJwtException ex) {
             // handle unsupported JWT token
+            ex.printStackTrace();
         } catch (IllegalArgumentException ex) {
             // handle JWT claims string is empty
+            ex.printStackTrace();
         }
         return false;
     }
 
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
+        System.out.println(bearerToken);
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            System.out.println(bearerToken.substring(7));
             return bearerToken.substring(7);
         }
         return null;
