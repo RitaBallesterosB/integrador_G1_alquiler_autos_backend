@@ -95,6 +95,7 @@ public class Reserva {
         this.fechaDevolucion = fechaDevolucion;
     }
 
+
     public String getNombre() {
         return nombre;
     }
@@ -134,4 +135,16 @@ public class Reserva {
     public void setMetodoPago(Long metodoPago) {
         this.metodoPago = metodoPago;
     }
+
+    /*@Override
+    public String toString() {
+        return "Reserva{" +
+                "id=" + id +
+                ", vehiculo=" + vehiculo +
+                ", usuario=" + usuario +
+                ", fechaEntrega=" + fechaEntrega +
+                ", fechaDevolucion=" + fechaDevolucion +
+                '}';
+    }*/
+
 }
