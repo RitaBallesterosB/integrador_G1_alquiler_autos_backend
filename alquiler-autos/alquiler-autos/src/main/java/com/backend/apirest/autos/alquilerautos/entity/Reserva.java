@@ -79,4 +79,15 @@ public class Reserva {
     public void setFechaDevolucion(Date fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
+
+    /*@Override
+    public String toString() {
+        return "Reserva{" +
+                "id=" + id +
+                ", vehiculo=" + vehiculo +
+                ", usuario=" + usuario +
+                ", fechaEntrega=" + fechaEntrega +
+                ", fechaDevolucion=" + fechaDevolucion +
+                '}';
+    }*/
 }

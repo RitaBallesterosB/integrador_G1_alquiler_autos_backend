@@ -3,6 +3,7 @@ package com.backend.apirest.autos.alquilerautos.controller;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.ImagenEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
+import com.backend.apirest.autos.alquilerautos.entity.Reserva;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.exceptions.BadRequestException;
 import com.backend.apirest.autos.alquilerautos.exceptions.ResponseJson;
@@ -158,4 +159,17 @@ public class VehiculoController {
         return ResponseEntity.ok(responseData);
 
     }
+    //___________________________________________________________________________________
+    @GetMapping("fechasocupadas/{id}")
+    public ResponseEntity<?> reservas(@PathVariable Long id) {
+        try{
+            List<Date> fechasOcupadas = vehiculoService.listarFechasOcupadas(id);
+            return new ResponseEntity<>(fechasOcupadas, HttpStatus.OK);
+        }catch (Exception e){
+            // Manejo de excepciones aquí, puedes imprimir el error en la consola o manejarlo según tus necesidades
+            e.printStackTrace();
+            return new ResponseEntity<>("Error al obtener la lista de fechas ocupadas del vehiculo", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    //___________________________________________________________________________________
 }

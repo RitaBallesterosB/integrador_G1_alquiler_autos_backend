@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,"/usuarios/permisos/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/vehiculos/busqueda").permitAll()
                 .antMatchers(HttpMethod.GET, "/vehiculos/busqueda/sugerencias").permitAll()
+                .antMatchers(HttpMethod.GET, "/vehiculos/fechasocupadas/**").permitAll()//Permitir acceso sin autenticación al endpoint vehiculos/fechasocupadas/{id}
                 .antMatchers(HttpMethod.POST,"/categorias/**").hasRole("ADMIN")
                 .anyRequest().authenticated() // Restringir acceso a otras rutas que requieran autenticación
                 .and()
