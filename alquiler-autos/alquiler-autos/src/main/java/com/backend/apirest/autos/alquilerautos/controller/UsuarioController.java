@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,14 +49,14 @@ public class UsuarioController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<?> listarVehiculos() {
+    public ResponseEntity<?> listarUsuarios() {
         try{
             List<GestionUsuarioSalidaDto> usuarios = usuarioService.listarUsuarios();
             return new ResponseEntity<>(usuarios, HttpStatus.OK);
         }catch (Exception e){
             // Manejo de excepciones aquí, puedes imprimir el error en la consola o manejarlo según tus necesidades
             e.printStackTrace();
-            return new ResponseEntity<>("Error al obtener la lista de vehículos", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al obtener la lista de usuarios", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -81,6 +82,22 @@ public class UsuarioController {
             // Manejo de excepción si el usuario no es encontrado
             ResponseJson responseData = new ResponseJson(false, "Usuario no encontrado", null);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseData);
+        }
+    }
+
+    @GetMapping("/correoElectronico")
+    public ResponseEntity<List<GestionUsuarioSalidaDto>> obtenerUsuarioPorEmail(@RequestBody Map<String, Object> requestBody) {
+        try {
+            if (requestBody == null || requestBody.isEmpty()) {
+                // Manejar el caso en el que no se proporciona ningún parámetro en el cuerpo
+                // Puedes devolver una lista vacía o un mensaje de error, dependiendo de tu lógica de negocio
+                return ResponseEntity.ok(Collections.emptyList());
+            }
+            String correoElectronico = (String) requestBody.get("correoElectronico");
+            List<GestionUsuarioSalidaDto> usuarios = usuarioService.obtenerUsuarioPorEmail(correoElectronico);
+            return ResponseEntity.ok(usuarios);
+        } catch (UsuarioNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 }

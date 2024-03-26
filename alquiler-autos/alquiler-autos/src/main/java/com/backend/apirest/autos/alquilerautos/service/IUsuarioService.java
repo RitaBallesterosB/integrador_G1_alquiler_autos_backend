@@ -15,4 +15,5 @@ public interface IUsuarioService {
     public Long registrarUsuario(UsuarioEntradaDto usuarioDto);
     void administrarUsuario(Long idUsuario, boolean isAdmin);
 
+    public List<GestionUsuarioSalidaDto> obtenerUsuarioPorEmail(String correoElectronico);
 }

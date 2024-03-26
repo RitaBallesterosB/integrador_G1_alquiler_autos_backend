@@ -1,4 +1,5 @@
 package com.backend.apirest.autos.alquilerautos.service.impl;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -157,7 +158,20 @@ public class UsuarioService implements IUsuarioService {
 
         }
 
-        // Método para configurar los mapeos
+    @Override
+    public List<GestionUsuarioSalidaDto> obtenerUsuarioPorEmail(String correoElectronico) {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findByCorreoElectronico(correoElectronico);
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            GestionUsuarioSalidaDto usuarioSalidaDto = entidadADtoSalida(usuario);
+            return Collections.singletonList(usuarioSalidaDto);
+        } else {
+            // Manejar el caso en que el usuario no sea encontrado
+            throw new UsuarioNotFoundException("Usuario no encontrado para el correo electrónico: " + correoElectronico);
+        }
+    }
+
+    // Método para configurar los mapeos
         private void configureMapping() {
             if (modelMapper.getTypeMap(UsuarioEntradaDto.class, Usuario.class) == null) {
                 modelMapper.createTypeMap(UsuarioEntradaDto.class, Usuario.class);

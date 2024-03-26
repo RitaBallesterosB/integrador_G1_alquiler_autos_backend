@@ -1,9 +1,11 @@
-package com.backend.apirest.autos.alquilerautos.dto.salida.usuario;
+package com.backend.apirest.autos.alquilerautos.dto.entrada.usuario;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
 
-public class ReservaSalidaDto {
-    private Long id;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ReservaEntradaDto {
     private Long vehiculoId;
     private Long usuarioId;
     private Date fechaEntrega;
@@ -13,11 +15,15 @@ public class ReservaSalidaDto {
     private String correoElectronico;
     private String telefono;
     private Long metodoPago;
-    public ReservaSalidaDto() {
+
+    // Constructor vacío
+    public ReservaEntradaDto() {
     }
 
-    public ReservaSalidaDto(Long id, Long vehiculoId, Long usuarioId, Date fechaEntrega, Date fechaDevolucion, String nombre, String apellido, String correoElectronico, String telefono, Long metodoPago) {
-        this.id = id;
+    // Constructor con todos los campos
+
+
+    public ReservaEntradaDto(Long vehiculoId, Long usuarioId, Date fechaEntrega, Date fechaDevolucion, String nombre, String apellido, String correoElectronico, String telefono, Long metodoPago) {
         this.vehiculoId = vehiculoId;
         this.usuarioId = usuarioId;
         this.fechaEntrega = fechaEntrega;
@@ -27,30 +33,6 @@ public class ReservaSalidaDto {
         this.correoElectronico = correoElectronico;
         this.telefono = telefono;
         this.metodoPago = metodoPago;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getVehiculoId() {
-        return vehiculoId;
-    }
-
-    public void setVehiculoId(Long vehiculoId) {
-        this.vehiculoId = vehiculoId;
-    }
-
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
     }
 
     public Date getFechaEntrega() {
@@ -109,4 +91,6 @@ public class ReservaSalidaDto {
         this.metodoPago = metodoPago;
     }
 }
+
+
 

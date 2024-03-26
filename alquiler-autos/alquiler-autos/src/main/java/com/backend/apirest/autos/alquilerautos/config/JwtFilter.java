@@ -42,7 +42,6 @@ public class JwtFilter extends GenericFilterBean {
             throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         String token = jwtTokenProvider.resolveToken(httpRequest);
-        System.out.println("dofilter "+requiresAuthentication(httpRequest.getRequestURI()));
          //Verificar si la ruta no requiere autenticación
         if (!requiresAuthentication(httpRequest.getRequestURI())) {
             filterChain.doFilter(req, res);
