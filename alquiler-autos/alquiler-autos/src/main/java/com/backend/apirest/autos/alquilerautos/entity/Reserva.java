@@ -3,6 +3,7 @@ package com.backend.apirest.autos.alquilerautos.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Optional;
 
 @Entity
 @Table(name = "reservas")
@@ -15,11 +16,11 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(name = "VEHICULOS_id_vehiculos")
-    private Vehiculo vehiculo;
+    private Vehiculo vehiculo;//Deberia ser ID de tipo LONG??
 
     @ManyToOne
     @JoinColumn(name = "USUARIOS_id_usuarios")
-    private Usuario usuario;
+    private Usuario usuario;//Deberia ser ID de tipo LONG??
 
     @Column(name="fecha_entrega")
     private Date fechaEntrega;
@@ -67,16 +68,18 @@ public class Reserva {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setVehiculo(Optional<Vehiculo> vehiculo) {
+        Vehiculo vehicu= vehiculo.get();
+        this.vehiculo = vehicu;
     }
 
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(Optional<Usuario> usuario) {
+        Usuario user= usuario.get();
+        this.usuario = user;
     }
 
     public Date getFechaEntrega() {
@@ -136,15 +139,19 @@ public class Reserva {
         this.metodoPago = metodoPago;
     }
 
-    /*@Override
+    @Override
     public String toString() {
         return "Reserva{" +
                 "id=" + id +
-                ", vehiculo=" + vehiculo +
-                ", usuario=" + usuario +
+                ", vehiculo=" + vehiculo.getId() +
+                ", usuario=" + usuario.getIdUsuario() +
                 ", fechaEntrega=" + fechaEntrega +
                 ", fechaDevolucion=" + fechaDevolucion +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", metodoPago=" + metodoPago +
                 '}';
-    }*/
-
+    }
 }

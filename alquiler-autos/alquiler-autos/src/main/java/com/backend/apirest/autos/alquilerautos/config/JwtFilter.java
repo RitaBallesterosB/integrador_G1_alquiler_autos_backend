@@ -26,13 +26,15 @@ public class JwtFilter extends GenericFilterBean {
     private static final Set<String> UNAUTHENTICATED_PATHS = new HashSet<>(Arrays.asList(
                     "/login",
                     "/vehiculos/listar",
+                    "/vehiculos/**",
                     "/vehiculos/aleatorios",
                     "/imagenes/galeria/**",
                     "/imagenes/galeria/**/vermas",
                     "/usuarios/registro",
                     "/vehiculos/busqueda",
                     "/vehiculos/busqueda/sugerencias",
-                    "/vehiculos/fechasocupadas/**"));
+                    "/vehiculos/fechasocupadas/**",
+                    "/reservas/registrar"));
 
     public JwtFilter(JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService) {
         this.jwtTokenProvider = jwtTokenProvider;

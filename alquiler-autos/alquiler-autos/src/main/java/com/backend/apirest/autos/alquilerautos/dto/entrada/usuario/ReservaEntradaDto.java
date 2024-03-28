@@ -35,6 +35,22 @@ public class ReservaEntradaDto {
         this.metodoPago = metodoPago;
     }
 
+    public Long getVehiculoId() {
+        return vehiculoId;
+    }
+
+    public void setVehiculoId(Long vehiculoId) {
+        this.vehiculoId = vehiculoId;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     public Date getFechaEntrega() {
         return fechaEntrega;
     }
