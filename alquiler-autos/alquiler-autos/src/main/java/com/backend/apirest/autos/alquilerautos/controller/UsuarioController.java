@@ -85,7 +85,7 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/correoElectronico")
+    @PostMapping("/correoElectronico")
     public ResponseEntity<List<GestionUsuarioSalidaDto>> obtenerUsuarioPorEmail(@RequestBody Map<String, Object> requestBody) {
         try {
             if (requestBody == null || requestBody.isEmpty()) {

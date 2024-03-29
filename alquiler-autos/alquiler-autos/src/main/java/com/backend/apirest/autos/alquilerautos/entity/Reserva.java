@@ -95,7 +95,6 @@ public class Reserva {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-
     public String getNombre() {
         return nombre;
     }

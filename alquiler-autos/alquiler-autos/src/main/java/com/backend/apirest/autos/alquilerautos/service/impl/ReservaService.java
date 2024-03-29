@@ -19,25 +19,28 @@ public class ReservaService implements IReservaService {
         this.modelMapper = modelMapper;
     }
 
-    // Configura el mapeo entre DTOs y entidades
-   /* private void configureMapping() {
+    private void configureMapping() {
         modelMapper.createTypeMap(ReservaEntradaDto.class, Reserva.class)
-                .addMappings(mapper -> mapper.skip(Reserva::setId));
+                .addMappings(mapper -> {
+                    mapper.skip(Reserva::setId);
+                    mapper.map(ReservaEntradaDto::getVehiculoId, (dest, value) -> dest.getVehiculo().setId((Long) value));
+                    mapper.map(ReservaEntradaDto::getUsuarioId, (dest, value) -> dest.getUsuario().setIdUsuario((Long) value));
+                });
         modelMapper.createTypeMap(Reserva.class, ReservaSalidaDto.class)
-                .addMapping(Reserva::getVehiculoId, ReservaSalidaDto::setVehiculoId)
-                .addMapping(Reserva::getUsuarioId, ReservaSalidaDto::setUsuarioId);
+                .addMapping(src -> src.getVehiculo().getId(), ReservaSalidaDto::setVehiculoId)
+                .addMapping(src -> src.getUsuario().getIdUsuario(), ReservaSalidaDto::setUsuarioId);
     }
 
-    // Convierte un DTO de entrada en una entidad
-    private Reserva dtoEntradaAEntidad(ReservaInputDTO reservaInputDTO) {
+
+    private Reserva dtoEntradaAEntidad(ReservaEntradaDto reservaEntradaDto) {
         configureMapping(); // Configura el mapeo antes de la conversión
-        return modelMapper.map(reservaInputDTO, Reserva.class);
+        return modelMapper.map(reservaEntradaDto, Reserva.class);
     }
 
-    // Convierte una entidad en un DTO de salida
-    private ReservaOutputDTO entidadADtoSalida(Reserva reserva) {
+    private ReservaSalidaDto entidadADtoSalida(Reserva reserva) {
         configureMapping(); // Configura el mapeo antes de la conversión
-        return modelMapper.map(reserva, ReservaOutputDTO.class);
+        return modelMapper.map(reserva, ReservaSalidaDto.class);
     }
-*/
+
+
 }
