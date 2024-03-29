@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll() // Permitir acceso sin autenticación al endpoint de login
                 .antMatchers(HttpMethod.GET, "/vehiculos/listar").permitAll() // Permitir acceso sin autenticación a /vehiculos/listar
                 .antMatchers(HttpMethod.GET, "/vehiculos/aleatorios").permitAll() // Permitir acceso sin autenticación a /vehiculos/aleatorios
-                .antMatchers(HttpMethod.GET, "/vehiculos/**").permitAll() // Permitir acceso sin autenticación a /vehiculos/id
+                .antMatchers(HttpMethod.GET, "/vehiculos/detalle/**").permitAll() // Permitir acceso sin autenticación a /vehiculos/id
                 .antMatchers(HttpMethod.GET, "/imagenes/galeria/**").permitAll() // Permitir acceso sin autenticación a /imagenes/galeria/{vehiculoId}
                 .antMatchers(HttpMethod.GET, "/imagenes/galeria/**/vermas").permitAll() // Permitir acceso sin autenticación a /imagenes/galeria/{vehiculoId}
                 .antMatchers(HttpMethod.DELETE, "/vehiculos/eliminar/**").hasRole("ADMIN") // Restringir acceso a /vehiculos/eliminar/:id requiriendo autenticación y rol de administrador
