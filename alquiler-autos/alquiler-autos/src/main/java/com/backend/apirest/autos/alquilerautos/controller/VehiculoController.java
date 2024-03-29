@@ -76,7 +76,7 @@ public class VehiculoController {
 
     //____________________________________________________________________________________
     // Método para obtener un vehículo por su ID con imágenes
-    @GetMapping("/{id}")
+    @GetMapping("detalle/{id}")
     public ResponseEntity<?> obtenerVehiculoPorIdConImagenes(@PathVariable Long id) {
         try {
             VehiculoSalidaDto vehiculo = vehiculoService.obtenerVehiculoPorIdConImagenes(id);

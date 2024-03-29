@@ -26,6 +26,7 @@ public class JwtFilter extends GenericFilterBean {
     private static final Set<String> UNAUTHENTICATED_PATHS = new HashSet<>(Arrays.asList(
                     "/login",
                     "/vehiculos/listar",
+                    "/vehiculos/detalle/**",
                     "/vehiculos/aleatorios",
                     "/imagenes/galeria/**",
                     "/imagenes/galeria/**/vermas",

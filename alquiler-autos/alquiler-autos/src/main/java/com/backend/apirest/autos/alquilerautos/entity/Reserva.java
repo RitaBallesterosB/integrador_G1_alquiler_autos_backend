@@ -3,6 +3,7 @@ package com.backend.apirest.autos.alquilerautos.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Optional;
 
 @Entity
 @Table(name = "reservas")
@@ -20,7 +21,6 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "USUARIOS_id_usuarios")
     private Usuario usuario;
-
     @Column(name="fecha_entrega")
     private Date fechaEntrega;
 
@@ -135,7 +135,7 @@ public class Reserva {
         this.metodoPago = metodoPago;
     }
 
-    /*@Override
+    @Override
     public String toString() {
         return "Reserva{" +
                 "id=" + id +
@@ -143,7 +143,11 @@ public class Reserva {
                 ", usuario=" + usuario +
                 ", fechaEntrega=" + fechaEntrega +
                 ", fechaDevolucion=" + fechaDevolucion +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", metodoPago=" + metodoPago +
                 '}';
-    }*/
-
+    }
 }
