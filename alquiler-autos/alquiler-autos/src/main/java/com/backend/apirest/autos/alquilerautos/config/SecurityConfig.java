@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/usuarios/listar").hasRole("ADMIN") // Restringir acceso a /usuarios/listar requiriendo autenticacion y rol de administrador
                 .antMatchers(HttpMethod.POST, "/usuarios/registro").permitAll() // Permitir acceso sin autenticación al endpoint /usuarios/registro
                 .antMatchers(HttpMethod.PUT,"/usuarios/permisos/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/vehiculos/busqueda").permitAll()
+                .antMatchers(HttpMethod.POST, "/vehiculos/busqueda").permitAll()
                 .antMatchers(HttpMethod.GET, "/vehiculos/busqueda/sugerencias").permitAll()
                 .antMatchers(HttpMethod.GET, "/vehiculos/fechasocupadas/**").permitAll()//Permitir acceso sin autenticación al endpoint vehiculos/fechasocupadas/{id}
                 .antMatchers(HttpMethod.POST,"/categorias/**").hasRole("ADMIN")

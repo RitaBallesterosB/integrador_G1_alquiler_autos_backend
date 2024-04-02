@@ -543,7 +543,7 @@
 						{
 							"name": "consulta",
 							"originalRequest": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -582,11 +582,11 @@
 						{
 							"name": "categoria",
 							"originalRequest": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"categoria\": [3]\r\n}",
+									"raw": "{\r\n    \"categoria\": [1]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -621,11 +621,11 @@
 						{
 							"name": "fechas",
 							"originalRequest": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+									"raw": "{\r\n    \"fechaInicial\": \"2024-04-02\",\r\n    \"fechaFinal\": \"2024-04-03\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -660,7 +660,7 @@
 						{
 							"name": "consulta y categoria",
 							"originalRequest": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
@@ -699,11 +699,11 @@
 						{
 							"name": "consulta categoria fecha",
 							"originalRequest": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"consulta\":\"Hyunda\",\r\n    \"categoria\": [1,2,3],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+									"raw": "{\r\n    \"consulta\":\"Ca\",\r\n    \"categoria\": [1,2,3],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -738,11 +738,11 @@
 						{
 							"name": "categoria,fechas sin consulta",
 							"originalRequest": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"categoria\": [1],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+									"raw": "{\r\n    \"categoria\": [3],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -777,11 +777,11 @@
 						{
 							"name": "consulta,fechas sin categoria",
 							"originalRequest": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"categoria\": [1],\r\n    \"fechaInicial\": \"2024-03-19\",\r\n    \"fechaFinal\": \"2024-03-20\"\r\n}",
+									"raw": "{\r\n    \"consulta\": \"BMW IX3\",\r\n    \"fechaInicial\": \"2024-04-20\",\r\n    \"fechaFinal\": \"2024-04-20\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1859,13 +1859,19 @@
 			"name": "Reservas",
 			"item": [
 				{
-					"name": "registro usuarios",
+					"name": "registro reservas",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzEyMDE3MzU2LCJleHAiOjE3MTIxMDM3NTZ9.pIePeCUVnYqqYfY33_9TFFoZPMX-N2IQoJcYzbBfwJrRN_pyss7z6NJ_4mD7FdSJ2gnj9IXAEfD0GBBbDnD3FA",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\":\"nombre usuario\",\r\n    \"apellido\":\"apellido\",\r\n    \"correoElectronico\":\"correo@ejemplo.com\",\r\n    \"contrasenia\":\"12dfsd\"\r\n}",
+							"raw": "{\r\n    \"apellido\": \"ramirez\",\r\n    \"correoElectronico\": \"pepito@gmail.com\",\r\n    \"fechaDevolucion\": \"2024-03-29\",    \r\n    \"fechaEntrega\": \"2024-03-23\",\r\n    \"metodoPago\": 1,\r\n    \"nombre\": \"pepito\",\r\n    \"telefono\": null,\r\n    \"usuarioId\": 2,\r\n    \"vehiculoId\": 50\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1873,14 +1879,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8081/usuarios/registro",
+							"raw": "localhost:8081/reservas/registrar",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
-								"usuarios",
-								"registro"
+								"reservas",
+								"registrar"
 							]
 						}
 					},
@@ -1890,7 +1896,25 @@
 					"name": "reservas del usuario",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzEyMDk4NzI0LCJleHAiOjE3MTIxODUxMjR9.2Mom32wR63nkDy7-CZ3Mxiy_GQoqPi5nMqwigkYU6hhLSpbsWu8QESW6tivpkMOsd5Di9Poey7Z2Uje9I7Ga6w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8081/reservas/usuario/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"reservas",
+								"usuario",
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1901,12 +1925,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzExNzE4MTE3LCJleHAiOjE3MTE4MDQ1MTd9.8464j9fxI-grcIDvlVcTDpnrj5fH95VAbsm6bdwWw8dcuOT32G1PDatsv-TpZRPMdcLH-KIss0aYvEfZj0mwEQ",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZW1haWwiOiJwZXBpdG9AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzEyMDE3MzU2LCJleHAiOjE3MTIxMDM3NTZ9.pIePeCUVnYqqYfY33_9TFFoZPMX-N2IQoJcYzbBfwJrRN_pyss7z6NJ_4mD7FdSJ2gnj9IXAEfD0GBBbDnD3FA",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8081/reservas/eliminar/7",
+							"raw": "localhost:8081/reservas/eliminar/11",
 							"host": [
 								"localhost"
 							],
@@ -1914,7 +1938,7 @@
 							"path": [
 								"reservas",
 								"eliminar",
-								"7"
+								"11"
 							]
 						}
 					},

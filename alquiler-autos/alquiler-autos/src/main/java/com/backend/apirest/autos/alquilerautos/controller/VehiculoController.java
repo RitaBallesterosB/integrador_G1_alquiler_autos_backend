@@ -117,37 +117,36 @@ public class VehiculoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(jsonResponse);
         }
     }
-   //Metodo de buscar vehiculos
-   @GetMapping("/busqueda")
-   public ResponseEntity<?> buscarVehiculos(@RequestBody(required = false) Map<String, Object> requestBody) throws ParseException {
-       try {
-           if (requestBody == null || requestBody.isEmpty()) {
-               // Manejar el caso en el que no se proporciona ningún parámetro en el cuerpo
-               // Puedes devolver una lista vacía o un mensaje de error, dependiendo de tu lógica de negocio
-               return ResponseEntity.ok(Collections.emptyList());
-           }
+    //Metodo de buscar vehiculos
+    @PostMapping("/busqueda")
+    public ResponseEntity<?> buscarVehiculos(@RequestBody(required = false) Map<String, Object> requestBody) throws ParseException {
+        try {
+            if (requestBody == null || requestBody.isEmpty()) {
+                // Manejar el caso en el que no se proporciona ningún parámetro en el cuerpo
+                // Puedes devolver una lista vacía o un mensaje de error, dependiendo de tu lógica de negocio
+                return ResponseEntity.ok(Collections.emptyList());
+            }
 
-           // Extrae los parámetros del cuerpo de la solicitud
-           String consulta = (String) requestBody.get("consulta");
-           List<Long> categoria = new ArrayList<>();
+            // Extrae los parámetros del cuerpo de la solicitud
+            String consulta = (String) requestBody.get("consulta");
+            List<Long> categoria = new ArrayList<>();
 
-           if (requestBody.containsKey("categoria") && requestBody.get("categoria") != null) {
-               categoria = ((List<Integer>) requestBody.get("categoria")).stream()
-                       .map(Long::valueOf)
-                       .collect(Collectors.toList());
-           }
-           String fechaInicial = (String) requestBody.get("fechaInicial");
-           String fechaFinal = (String) requestBody.get("fechaFinal");
+            if (requestBody.containsKey("categoria") && requestBody.get("categoria") != null) {
+                categoria = ((List<Integer>) requestBody.get("categoria")).stream()
+                        .map(Long::valueOf)
+                        .collect(Collectors.toList());
+            }
+            String fechaInicial = (String) requestBody.get("fechaInicial");
+            String fechaFinal = (String) requestBody.get("fechaFinal");
 
-           List<VehiculoSalidaDto> vehiculos = vehiculoService.buscarVehiculos(consulta, categoria, fechaInicial, fechaFinal);
-           //System.out.println(vehiculos);
-           return new ResponseEntity<>(vehiculos, HttpStatus.OK);
-       } catch (HttpMessageNotWritableException e) {
-           // Manejar la excepción aquí (p. ej., registrarla, devolver un mensaje de error personalizado, etc.)
-           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al serializar la respuesta JSON");
-       }
-   }
-
+            List<VehiculoSalidaDto> vehiculos = vehiculoService.buscarVehiculos(consulta, categoria, fechaInicial, fechaFinal);
+            //System.out.println(vehiculos);
+            return new ResponseEntity<>(vehiculos, HttpStatus.OK);
+        } catch (HttpMessageNotWritableException e) {
+            // Manejar la excepción aquí (p. ej., registrarla, devolver un mensaje de error personalizado, etc.)
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al serializar la respuesta JSON");
+        }
+    }
     @GetMapping("/busqueda/sugerencias")
     public ResponseEntity<ResponseJson> obtenerSugerencias(@RequestBody Map<String, Object> requestBody) {
         Map<String, Object> nameVehiculos = new HashMap<>();

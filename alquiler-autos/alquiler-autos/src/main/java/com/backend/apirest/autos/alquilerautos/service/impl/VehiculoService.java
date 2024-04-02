@@ -315,6 +315,32 @@ public List<VehiculoSalidaDto> buscarVehiculos(String consulta, List<Long> categ
                 .map(Vehiculo::getNombre)
                 .collect(Collectors.toList());
     }
+
+    public List<Date> listarFechasOcupadas(Long id) {
+        List<Date> fechasOcupadas = new ArrayList<>();//lista de fechas
+        List<Reserva> reservas = vehiculoRepository.findById(id).get().getReservas();
+        Calendar calendar = Calendar.getInstance();
+        Date fechaEntrega = null;
+        Date fechaDevolucion = null;
+        for (Reserva reserva: reservas) {
+            fechaEntrega= reserva.getFechaEntrega();
+            calendar.setTime(fechaEntrega);
+            System.out.println(fechaEntrega);//probando si funciona
+            fechasOcupadas.add(fechaEntrega);
+            fechaDevolucion=reserva.getFechaDevolucion();
+            System.out.println(fechaDevolucion);
+            while(!fechaEntrega.equals(fechaDevolucion)){
+                // Sumar un día
+                calendar.add(Calendar.DAY_OF_YEAR, 1);
+                // Obtener la fecha resultante
+                fechaEntrega = calendar.getTime();
+                System.out.println(fechaEntrega);
+                fechasOcupadas.add(fechaEntrega);
+            }
+        }
+
+        return fechasOcupadas;
+    }
     private void configureMapping() {
         if (modelMapper.getTypeMap(CategoriaEntradaDto.class, Categoria.class) == null) {
             modelMapper.createTypeMap(CategoriaEntradaDto.class, Categoria.class)
@@ -359,35 +385,5 @@ public List<VehiculoSalidaDto> buscarVehiculos(String consulta, List<Long> categ
         }
         return vehiculoSalidaDto;
     }
-
-    //___________________________________________________________________________
-
-    //___________________________________________________________________________
-    public List<Date> listarFechasOcupadas(Long id) {
-        List<Date> fechasOcupadas = new ArrayList<>();//lista de fechas
-        List<Reserva> reservas = vehiculoRepository.findById(id).get().getReservas();
-        Calendar calendar = Calendar.getInstance();
-        Date fechaEntrega = null;
-        Date fechaDevolucion = null;
-        for (Reserva reserva: reservas) {
-            fechaEntrega= reserva.getFechaEntrega();
-            calendar.setTime(fechaEntrega);
-            System.out.println(fechaEntrega);//probando si funciona
-            fechasOcupadas.add(fechaEntrega);
-            fechaDevolucion=reserva.getFechaDevolucion();
-            System.out.println(fechaDevolucion);
-            while(!fechaEntrega.equals(fechaDevolucion)){
-                // Sumar un día
-                calendar.add(Calendar.DAY_OF_YEAR, 1);
-                // Obtener la fecha resultante
-                fechaEntrega = calendar.getTime();
-                System.out.println(fechaEntrega);
-                fechasOcupadas.add(fechaEntrega);
-            }
-        }
-
-        return fechasOcupadas;
-    }
-    //___________________________________________________________________________
 
 }

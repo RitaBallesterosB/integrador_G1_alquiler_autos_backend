@@ -117,8 +117,7 @@ public class Vehiculo {
                 ", descripcion='" + descripcion + '\'' +
                 ", imagenes=" + imagenes +
                 ", categoria=" + categoria +
-                ", caracteristicas=" + caracteristicas +
-                ", reservas=" + reservas +
+                ", caracteristicas=" + caracteristicas+
                 '}';
     }
 }
