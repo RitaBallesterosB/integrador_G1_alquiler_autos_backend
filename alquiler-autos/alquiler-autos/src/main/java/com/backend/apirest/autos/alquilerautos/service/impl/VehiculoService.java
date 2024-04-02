@@ -3,6 +3,7 @@ package com.backend.apirest.autos.alquilerautos.service.impl;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.CategoriaEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.ImagenEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntradaDto;
+import com.backend.apirest.autos.alquilerautos.dto.salida.usuario.ReservaFechasSalidaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.CategoriaSalidaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.ImagenSalidaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
@@ -316,31 +317,7 @@ public List<VehiculoSalidaDto> buscarVehiculos(String consulta, List<Long> categ
                 .collect(Collectors.toList());
     }
 
-    public List<Date> listarFechasOcupadas(Long id) {
-        List<Date> fechasOcupadas = new ArrayList<>();//lista de fechas
-        List<Reserva> reservas = vehiculoRepository.findById(id).get().getReservas();
-        Calendar calendar = Calendar.getInstance();
-        Date fechaEntrega = null;
-        Date fechaDevolucion = null;
-        for (Reserva reserva: reservas) {
-            fechaEntrega= reserva.getFechaEntrega();
-            calendar.setTime(fechaEntrega);
-            System.out.println(fechaEntrega);//probando si funciona
-            fechasOcupadas.add(fechaEntrega);
-            fechaDevolucion=reserva.getFechaDevolucion();
-            System.out.println(fechaDevolucion);
-            while(!fechaEntrega.equals(fechaDevolucion)){
-                // Sumar un día
-                calendar.add(Calendar.DAY_OF_YEAR, 1);
-                // Obtener la fecha resultante
-                fechaEntrega = calendar.getTime();
-                System.out.println(fechaEntrega);
-                fechasOcupadas.add(fechaEntrega);
-            }
-        }
 
-        return fechasOcupadas;
-    }
     private void configureMapping() {
         if (modelMapper.getTypeMap(CategoriaEntradaDto.class, Categoria.class) == null) {
             modelMapper.createTypeMap(CategoriaEntradaDto.class, Categoria.class)
@@ -385,5 +362,30 @@ public List<VehiculoSalidaDto> buscarVehiculos(String consulta, List<Long> categ
         }
         return vehiculoSalidaDto;
     }
+
+    //___________________________________________________________________________
+
+    //___________________________________________________________________________
+    public List<ReservaFechasSalidaDto> listarFechasOcupadas(Long id) {
+        List<ReservaFechasSalidaDto> fechasOcupadas = new ArrayList<>();//lista de fechas
+        List<Reserva> reservas = vehiculoRepository.findById(id).get().getReservas();
+
+        for (Reserva reserva: reservas) {
+            fechasOcupadas.add(convertirReservaAFechasSalidaDto(reserva));
+        }
+
+        return fechasOcupadas;
+    }
+
+    private ReservaFechasSalidaDto convertirReservaAFechasSalidaDto(Reserva reserva) {
+
+        ReservaFechasSalidaDto reservaFechasSalidaDto= new ReservaFechasSalidaDto();
+
+        reservaFechasSalidaDto.setFechaDevolucion(reserva.getFechaDevolucion());
+        reservaFechasSalidaDto.setFechaEntrega(reserva.getFechaEntrega());
+
+        return reservaFechasSalidaDto;
+    }
+    //___________________________________________________________________________
 
 }

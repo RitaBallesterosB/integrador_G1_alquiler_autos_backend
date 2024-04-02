@@ -2,6 +2,7 @@ package com.backend.apirest.autos.alquilerautos.controller;
 
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.ImagenEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.vehiculo.VehiculoEntradaDto;
+import com.backend.apirest.autos.alquilerautos.dto.salida.usuario.ReservaFechasSalidaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
 import com.backend.apirest.autos.alquilerautos.entity.Reserva;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
@@ -162,7 +163,7 @@ public class VehiculoController {
     @GetMapping("fechasocupadas/{id}")
     public ResponseEntity<?> reservas(@PathVariable Long id) {
         try{
-            List<Date> fechasOcupadas = vehiculoService.listarFechasOcupadas(id);
+            List<ReservaFechasSalidaDto> fechasOcupadas = vehiculoService.listarFechasOcupadas(id);
             return new ResponseEntity<>(fechasOcupadas, HttpStatus.OK);
         }catch (Exception e){
             // Manejo de excepciones aquí, puedes imprimir el error en la consola o manejarlo según tus necesidades
