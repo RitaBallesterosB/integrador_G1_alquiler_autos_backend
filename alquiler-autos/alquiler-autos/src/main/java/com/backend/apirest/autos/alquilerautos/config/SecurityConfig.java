@@ -50,8 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/vehiculos/busqueda/sugerencias").permitAll()
                 .antMatchers(HttpMethod.GET, "/vehiculos/fechasocupadas/**").permitAll()//Permitir acceso sin autenticación al endpoint vehiculos/fechasocupadas/{id}
                 .antMatchers(HttpMethod.POST,"/categorias/**").hasRole("ADMIN")
-               //
-                // .antMatchers(HttpMethod.POST, "/reservas/registrar").permitAll()
                 .anyRequest().authenticated() // Restringir acceso a otras rutas que requieran autenticación
                 .and()
                 .addFilterBefore(new JwtFilter(jwtTokenProvider, customUserDetailsServiceBean(usuarioRepository)), UsernamePasswordAuthenticationFilter.class) // Agregar filtro JWT

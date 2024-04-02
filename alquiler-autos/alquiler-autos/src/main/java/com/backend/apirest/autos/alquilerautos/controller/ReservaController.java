@@ -32,7 +32,8 @@ public class ReservaController {
         System.out.println(reservaService.convertirDtoAReserva(reservaDto).toString());
         try {
             if (reservaDto == null || reservaDto.getNombre() == null || reservaDto.getNombre().isEmpty()||reservaDto.getApellido() == null || reservaDto.getApellido().isEmpty()
-                    || reservaDto.getCorreoElectronico() == null || reservaDto.getCorreoElectronico().isEmpty() || reservaDto.getFechaEntrega() == null || reservaDto.getFechaDevolucion()==null ) {
+                    || reservaDto.getCorreoElectronico() == null || reservaDto.getCorreoElectronico().isEmpty() || reservaDto.getFechaEntrega() == null || reservaDto.getFechaDevolucion()==null
+                    || reservaDto.getMetodoPago()==null) {
                 throw new BadRequestException("Los campos obligatorios no pueden estar vacíos");
             }
             Long idReservaRegistrada = reservaService.registrarReserva(reservaDto);
