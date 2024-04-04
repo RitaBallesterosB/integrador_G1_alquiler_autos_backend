@@ -1,10 +1,14 @@
 package com.backend.apirest.autos.alquilerautos.service.impl;
 
+import com.backend.apirest.autos.alquilerautos.dto.ReservaConVehiculoDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.usuario.ReservaEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.usuario.UsuarioEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.usuario.ReservaSalidaDto;
+import com.backend.apirest.autos.alquilerautos.dto.salida.usuario.UsuarioSalidaDto;
+import com.backend.apirest.autos.alquilerautos.dto.salida.vehiculo.VehiculoSalidaDto;
 import com.backend.apirest.autos.alquilerautos.entity.Reserva;
 import com.backend.apirest.autos.alquilerautos.entity.Usuario;
+import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import com.backend.apirest.autos.alquilerautos.exceptions.ReservaNotFoundException;
 import com.backend.apirest.autos.alquilerautos.exceptions.UsuarioNotFoundException;
 import com.backend.apirest.autos.alquilerautos.repository.ReservaRepository;
@@ -16,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,12 +57,34 @@ public class ReservaService implements IReservaService {
                 .collect(Collectors.toList());
     }
 
-    public List<ReservaSalidaDto> obtenerReservasPorUsuario(Long idUsuario) {
+    @Override
+    public List<ReservaConVehiculoDto> obtenerReservasPorUsuario(Long idUsuario) {
         List<Reserva> reservas = reservaRepository.findByUsuarioIdUsuario(idUsuario);
         return reservas.stream()
-                .map(this::convertirReservaASalidaDto)
+                .map(reserva -> {
+                    ReservaConVehiculoDto reservaDto = new ReservaConVehiculoDto();
+                    reservaDto.setId(reserva.getId());
+                    reservaDto.setFechaEntrega(reserva.getFechaEntrega());
+                    reservaDto.setFechaDevolucion(reserva.getFechaDevolucion());
+                    // Obtener el vehículo correspondiente a esta reserva
+                    Optional<Vehiculo> vehiculoOptional = vehiculoRepository.findById(reserva.getVehiculo().getId());
+                    vehiculoOptional.ifPresent(vehiculo -> {
+                        // Mapear los datos del vehículo al DTO de salida y agregarlos a la reserva DTO
+                        VehiculoSalidaDto vehiculoDto = modelMapper.map(vehiculo, VehiculoSalidaDto.class);
+                        reservaDto.setVehiculo(vehiculoDto);
+                    });
+
+                    // Mapear el usuario de la reserva al DTO de salida y agregarlo a la reserva DTO
+                    UsuarioSalidaDto usuarioDto = modelMapper.map(reserva.getUsuario(), UsuarioSalidaDto.class);
+                    reservaDto.setUsuario(usuarioDto);
+
+                    // Agrega los campos adicionales a reservaDto si es necesario
+
+                    return reservaDto;
+                })
                 .collect(Collectors.toList());
     }
+
     public ReservaSalidaDto obtenerReservaPorId(Long id) {
         Reserva reserva = reservaRepository.findById(id)
                 .orElseThrow(() -> new ReservaNotFoundException("Reserva no encontrada para el ID: " + id));

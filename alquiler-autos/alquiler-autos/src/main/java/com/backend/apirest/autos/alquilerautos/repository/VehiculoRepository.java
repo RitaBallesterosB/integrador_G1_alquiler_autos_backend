@@ -1,5 +1,6 @@
 package com.backend.apirest.autos.alquilerautos.repository;
 
+import com.backend.apirest.autos.alquilerautos.dto.ReservaConVehiculoDto;
 import com.backend.apirest.autos.alquilerautos.entity.Vehiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -22,5 +23,6 @@ public interface VehiculoRepository  extends JpaRepository <Vehiculo, Long> {
     List<Vehiculo> findByReservas_FechaEntregaBetweenAndReservas_FechaDevolucionBetween(Date fechaInicioEntrega, Date fechaFinEntrega, Date fechaInicioDevolucion, Date fechaFinDevolucion);
 
     Optional<Vehiculo> findById(Long id);
+
 
 }

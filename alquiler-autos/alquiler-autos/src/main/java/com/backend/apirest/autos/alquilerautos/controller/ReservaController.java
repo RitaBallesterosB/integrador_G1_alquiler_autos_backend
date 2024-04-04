@@ -1,5 +1,6 @@
 package com.backend.apirest.autos.alquilerautos.controller;
 
+import com.backend.apirest.autos.alquilerautos.dto.ReservaConVehiculoDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.usuario.ReservaEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.entrada.usuario.UsuarioEntradaDto;
 import com.backend.apirest.autos.alquilerautos.dto.salida.usuario.ReservaSalidaDto;
@@ -57,8 +58,8 @@ public class ReservaController {
     }
 
     @GetMapping("/usuario/{idUsuario}")
-    public ResponseEntity<List<ReservaSalidaDto>> obtenerReservasPorUsuario(@PathVariable Long idUsuario) {
-        List<ReservaSalidaDto> reservas = reservaService.obtenerReservasPorUsuario(idUsuario);
+    public ResponseEntity<List<ReservaConVehiculoDto>> obtenerReservasPorUsuario(@PathVariable Long idUsuario) {
+        List<ReservaConVehiculoDto> reservas = reservaService.obtenerReservasPorUsuario(idUsuario);
         return ResponseEntity.ok(reservas);
     }
 
